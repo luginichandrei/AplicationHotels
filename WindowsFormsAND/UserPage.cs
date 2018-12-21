@@ -105,5 +105,12 @@ namespace WindowsFormsAND
             MessageBox.Show("Hotel " + textBox1.Text.ToUpper() + " Update");
             con.Close();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            HotelPage up = new HotelPage(textBox4.Text);
+            up.Show();
+        }
     }
 }

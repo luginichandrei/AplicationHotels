@@ -48,6 +48,9 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.button4 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView1
@@ -89,7 +92,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(540, 376);
+            this.button1.Location = new System.Drawing.Point(530, 255);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(82, 48);
             this.button1.TabIndex = 1;
@@ -99,7 +102,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(712, 376);
+            this.button2.Location = new System.Drawing.Point(721, 255);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(76, 47);
             this.button2.TabIndex = 2;
@@ -109,11 +112,11 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(628, 375);
+            this.button3.Location = new System.Drawing.Point(613, 255);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(78, 47);
+            this.button3.Size = new System.Drawing.Size(108, 47);
             this.button3.TabIndex = 3;
-            this.button3.Text = "Edit Hotel";
+            this.button3.Text = "Update Hotel Data";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -229,9 +232,37 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 10;
-            this.button4.Text = "Refresh Info";
+            this.button4.Text = "Show hotels";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(588, 338);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(176, 20);
+            this.textBox4.TabIndex = 5;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(530, 319);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(93, 16);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Select Hotel";
+            this.label7.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(670, 364);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(127, 34);
+            this.button5.TabIndex = 11;
+            this.button5.Text = "Edit Hotel Information";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // User
             // 
@@ -239,15 +270,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label6);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -285,5 +319,8 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ColumnHeader UserPage;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button5;
     }
 }
