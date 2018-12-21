@@ -12,7 +12,42 @@ namespace WindowsFormsAND
         {
             
             InitializeComponent();
-        }              
+        }
+
+        private void User_Shown(object sender, EventArgs e)
+        {
+            //con.Open();
+        }
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            
+            
+        }
 
         private void button4_Click_1(object sender, EventArgs e)
         {
@@ -42,6 +77,11 @@ namespace WindowsFormsAND
             con.Close();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+        }
+
         private void button2_Click_1(object sender, EventArgs e)
         {
             con.Open();            
@@ -59,7 +99,7 @@ namespace WindowsFormsAND
                 "Foundation_year='" + textBox2.Text + "'," +
                 "Adress='" + textBox3.Text + "',"+
 
-                "Is_active='"+ 1 + "'WHERE Name='" + textBox1.Text + "'", con);
+                "Is_active='"+ 1 + "' WHERE Name='" + textBox1.Text + "'", con);
 
             updateHotel.ExecuteNonQuery();
             MessageBox.Show("Hotel " + textBox1.Text.ToUpper() + " Update");
