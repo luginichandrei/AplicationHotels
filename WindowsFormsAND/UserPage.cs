@@ -93,9 +93,40 @@ namespace WindowsFormsAND
 
         private void button5_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            HotelPage hp = new HotelPage(textBox4.Text);
-            hp.Show();
+            if (String.IsNullOrEmpty(textBox1.Text))
+            {
+                MessageBox.Show("Enter please hotel name");
+            }
+            else
+            {
+                this.Hide();
+                HotelPage hp = new HotelPage(textBox4.Text);
+                hp.Show();
+            }
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

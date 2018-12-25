@@ -33,8 +33,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -53,6 +52,10 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // listView1
@@ -61,10 +64,11 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4});
-            this.listView1.Location = new System.Drawing.Point(10, 57);
+            this.columnHeader4,
+            this.columnHeader5});
+            this.listView1.Location = new System.Drawing.Point(7, 57);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(339, 366);
+            this.listView1.Size = new System.Drawing.Size(354, 406);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -73,42 +77,37 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Number Room";
-            this.columnHeader1.Width = 97;
+            this.columnHeader1.Width = 79;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Price";
+            this.columnHeader2.Width = 35;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Comfort Level";
-            this.columnHeader3.Width = 95;
+            this.columnHeader3.Width = 80;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Capability";
-            this.columnHeader4.Width = 82;
+            this.columnHeader4.Width = 59;
             // 
-            // monthCalendar1
+            // columnHeader5
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(361, 234);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 1;
-            // 
-            // monthCalendar2
-            // 
-            this.monthCalendar2.Location = new System.Drawing.Point(572, 234);
-            this.monthCalendar2.Name = "monthCalendar2";
-            this.monthCalendar2.TabIndex = 2;
+            this.columnHeader5.Text = "Rezerved to";
+            this.columnHeader5.Width = 83;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(596, 399);
+            this.button1.Location = new System.Drawing.Point(405, 410);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(140, 24);
             this.button1.TabIndex = 3;
             this.button1.Text = "rezerved";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -167,6 +166,8 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(108, 20);
             this.textBox1.TabIndex = 9;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // textBox2
             // 
@@ -175,6 +176,7 @@
             this.textBox2.Size = new System.Drawing.Size(108, 20);
             this.textBox2.TabIndex = 10;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // textBox3
             // 
@@ -182,6 +184,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(108, 20);
             this.textBox3.TabIndex = 11;
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
             // textBox4
             // 
@@ -189,29 +192,31 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(108, 20);
             this.textBox4.TabIndex = 12;
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(371, 406);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(371, 273);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(84, 13);
+            this.label7.Size = new System.Drawing.Size(107, 16);
             this.label7.TabIndex = 13;
-            this.label7.Text = "Room number";
+            this.label7.Text = "Room Number";
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(493, 403);
+            this.textBox5.Location = new System.Drawing.Point(446, 292);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(67, 20);
+            this.textBox5.Size = new System.Drawing.Size(56, 20);
             this.textBox5.TabIndex = 14;
+            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(504, 212);
+            this.label8.Location = new System.Drawing.Point(634, 264);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(79, 13);
             this.label8.TabIndex = 13;
@@ -268,17 +273,56 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(486, 227);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(141, 24);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Room rezerve";
+            // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(583, 286);
+            this.monthCalendar1.MaxSelectionCount = 30;
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 19;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label10.Location = new System.Drawing.Point(371, 324);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(86, 16);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "User Name";
+            this.label10.Click += new System.EventHandler(this.label10_Click_1);
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(446, 345);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(99, 20);
+            this.textBox6.TabIndex = 14;
+            // 
             // HotelPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(754, 435);
+            this.ClientSize = new System.Drawing.Size(754, 493);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.monthCalendar1);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.button2);
+            this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -292,8 +336,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.monthCalendar2);
-            this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.listView1);
             this.Name = "HotelPage";
             this.Text = "HotelPage";
@@ -310,8 +352,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
-        private System.Windows.Forms.MonthCalendar monthCalendar2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
@@ -330,5 +370,10 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBox6;
     }
 }
