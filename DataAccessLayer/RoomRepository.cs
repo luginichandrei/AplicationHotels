@@ -38,12 +38,15 @@ namespace DataAccessLayer
             con.Open();
             SqlCommand hotelId = new SqlCommand("SELECT id FROM hotels WHERE Name='" + hotelName + "'", con);
             int primaryKey = Convert.ToInt32(hotelId.ExecuteScalar());
-            SqlCommand updateRoom = new SqlCommand("UPDATE rooms SET Number='" + number + "'," +
-                "Price='" + price + "'," +
-                "Comfort_level='" + level + "'," +
-                "Capability='" + capability +
-                "' WHERE Number='" + number + 
-                "'AND Hotels_id='" + primaryKey + "'", con);
+            
+
+            var x = @"UPDATE rooms SET Number = @number
+                Price=@price 
+                Comfort_level=@level
+                Capability=@capability
+                WHERE Number='@number
+                AND Hotels_id=@primaryKey";
+            SqlCommand updateRoom = new SqlCommand(x, con);
             updateRoom.ExecuteNonQuery();
             con.Close();
         }
@@ -58,19 +61,17 @@ namespace DataAccessLayer
             int user_Id = Convert.ToInt32(userId.ExecuteScalar());
             SqlCommand roomRezerv = new SqlCommand("UPDATE checkouts SET room_id='" + room_Id + "'," +
                 "user_id='" + user_Id + "'," +
-                "start_date='" + start_date + "'," +
-                "end_date='" + end_date +                
+                "start_date='" + start_date.ToString("d") + "'," +
+                "end_date='" + end_date.ToString("d") +                
                  "'", con);
             roomRezerv.ExecuteNonQuery();
-
-
         }
 
         //not work
         public List<List<String>> GetAll(string hotelName)
         {
             con.Open();
-            SqlCommand hotelId = new SqlCommand("SELECT id FROM hotels WHERE Name='" + hotelName + "'", con);
+            var hotelId = new SqlCommand("SELECT id FROM hotels WHERE Name='" + hotelName + "'", con);
             int primaryKey = Convert.ToInt32(hotelId.ExecuteScalar());
             SqlCommand rooms = new SqlCommand("SELECT * FROM rooms WHERE Hotels_id='" + primaryKey + "'", con);
             List<List<String>> result = new List<List<String>>();

@@ -72,7 +72,6 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -107,7 +106,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "rezerved";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.rezervedRoomButton);
             // 
             // label1
             // 
@@ -138,7 +137,6 @@
             this.label4.Size = new System.Drawing.Size(49, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "Price";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
@@ -166,8 +164,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(108, 20);
             this.textBox1.TabIndex = 9;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.roomNomber_textBox_KeyPress);
             // 
             // textBox2
             // 
@@ -175,8 +172,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(108, 20);
             this.textBox2.TabIndex = 10;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.price_textBox_KeyPress);
             // 
             // textBox3
             // 
@@ -184,7 +180,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(108, 20);
             this.textBox3.TabIndex = 11;
-            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comfort_level_textBox_KeyPress);
             // 
             // textBox4
             // 
@@ -192,7 +188,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(108, 20);
             this.textBox4.TabIndex = 12;
-            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.capability_textBox_KeyPress);
             // 
             // label7
             // 
@@ -210,7 +206,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(56, 20);
             this.textBox5.TabIndex = 14;
-            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
+            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.roomNumberRezerv_textBox_KeyPress);
             // 
             // label8
             // 
@@ -230,7 +226,7 @@
             this.button2.TabIndex = 15;
             this.button2.Text = "Show rooms";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.showRoomButton);
             // 
             // label9
             // 
@@ -238,10 +234,9 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label9.Location = new System.Drawing.Point(12, 18);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(76, 25);
+            this.label9.Size = new System.Drawing.Size(67, 25);
             this.label9.TabIndex = 16;
-            this.label9.Text = "label9";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
+            this.label9.Text = "Hotel";
             // 
             // button3
             // 
@@ -249,9 +244,9 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 35);
             this.button3.TabIndex = 17;
-            this.button3.Text = "Add rom";
+            this.button3.Text = "Add room";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.addRoomButton);
             // 
             // button4
             // 
@@ -261,7 +256,7 @@
             this.button4.TabIndex = 17;
             this.button4.Text = "Update room data";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.updateRoomData);
             // 
             // button5
             // 
@@ -271,7 +266,7 @@
             this.button5.TabIndex = 17;
             this.button5.Text = "Delete room";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.Click += new System.EventHandler(this.deleteRoomButton);
             // 
             // label2
             // 
@@ -299,7 +294,6 @@
             this.label10.Size = new System.Drawing.Size(86, 16);
             this.label10.TabIndex = 21;
             this.label10.Text = "User Name";
-            this.label10.Click += new System.EventHandler(this.label10_Click_1);
             // 
             // textBox6
             // 

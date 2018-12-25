@@ -14,44 +14,8 @@ namespace WindowsFormsAND
             InitializeComponent();
         }
         HotelRepository useHotelRepo = new HotelRepository();
-       
-        
-        private void User_Shown(object sender, EventArgs e)
-        {
-           
-        }
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            
-            
-        }
-
-        private void button4_Click_1(object sender, EventArgs e)
+      
+        private void showHotels_Click_1(object sender, EventArgs e)
         {
             listView1.Items.Clear();
             con.Open();
@@ -68,32 +32,27 @@ namespace WindowsFormsAND
             con.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void addHotelButton_Click(object sender, EventArgs e)
         {
             useHotelRepo.CreateHotel(textBox1.Text, textBox2.Text, textBox3.Text);
             MessageBox.Show("Hotel add");    
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void button2_Click_1(object sender, EventArgs e)
+        private void deleteHotelButton_Click_1(object sender, EventArgs e)
         {
             useHotelRepo.DeleteHotel(textBox1.Text);
             MessageBox.Show("Hotel " + textBox1.Text.ToUpper() + " delete");
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void updateHotelButton_Click(object sender, EventArgs e)
         {
             useHotelRepo.UpdateHotel(textBox1.Text, textBox2.Text, textBox3.Text);
             MessageBox.Show("Hotel " + textBox1.Text.ToUpper() + " Update");
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void editHotelButton_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(textBox1.Text))
+            if (String.IsNullOrEmpty(textBox4.Text))
             {
                 MessageBox.Show("Enter please hotel name");
             }
@@ -105,7 +64,7 @@ namespace WindowsFormsAND
             }
         }
 
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        private void hotelFoundationYear_textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
@@ -113,7 +72,7 @@ namespace WindowsFormsAND
             }
         }
 
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        private void nameHotel_textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
             {
@@ -121,7 +80,7 @@ namespace WindowsFormsAND
             }
         }
 
-        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        private void selectHoteLTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
             {
