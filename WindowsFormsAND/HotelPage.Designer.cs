@@ -28,50 +28,52 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewHotels = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.buttonRezerved = new System.Windows.Forms.Button();
+            this.labelChangeHotelData = new System.Windows.Forms.Label();
+            this.labelRoomNumber = new System.Windows.Forms.Label();
+            this.labelPrice = new System.Windows.Forms.Label();
+            this.labelComfortLebel = new System.Windows.Forms.Label();
+            this.labelCapability = new System.Windows.Forms.Label();
+            this.RoomNumberTextBox = new System.Windows.Forms.TextBox();
+            this.PriceTextBox = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.labelRoomNumberRez = new System.Windows.Forms.Label();
+            this.textBoxRoomNumberRez = new System.Windows.Forms.TextBox();
+            this.labelChabgeDate = new System.Windows.Forms.Label();
+            this.showRoomsButton = new System.Windows.Forms.Button();
+            this.labelHotelName = new System.Windows.Forms.Label();
+            this.buttonAddRoom = new System.Windows.Forms.Button();
+            this.buttonUodateRoomData = new System.Windows.Forms.Button();
+            this.buttonDeleteRoom = new System.Windows.Forms.Button();
+            this.labelRoomRezerve = new System.Windows.Forms.Label();
+            this.monthCalendarChangeDate = new System.Windows.Forms.MonthCalendar();
+            this.labelUserNameRez = new System.Windows.Forms.Label();
+            this.textBoxUserNameRez = new System.Windows.Forms.TextBox();
+            this.comfortLevelDropList = new System.Windows.Forms.ComboBox();
+            this.capabilityDropList = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // listView1
+            // listViewHotels
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewHotels.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5});
-            this.listView1.Location = new System.Drawing.Point(7, 57);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(354, 406);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listViewHotels.Location = new System.Drawing.Point(7, 57);
+            this.listViewHotels.Name = "listViewHotels";
+            this.listViewHotels.Size = new System.Drawing.Size(354, 406);
+            this.listViewHotels.TabIndex = 0;
+            this.listViewHotels.UseCompatibleStateImageBehavior = false;
+            this.listViewHotels.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
@@ -98,209 +100,234 @@
             this.columnHeader5.Text = "Rezerved to";
             this.columnHeader5.Width = 83;
             // 
-            // button1
+            // buttonRezerved
             // 
-            this.button1.Location = new System.Drawing.Point(405, 410);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(140, 24);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "rezerved";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.rezervedRoomButton);
+            this.buttonRezerved.Location = new System.Drawing.Point(405, 410);
+            this.buttonRezerved.Name = "buttonRezerved";
+            this.buttonRezerved.Size = new System.Drawing.Size(140, 24);
+            this.buttonRezerved.TabIndex = 3;
+            this.buttonRezerved.Text = "rezerved";
+            this.buttonRezerved.UseVisualStyleBackColor = true;
+            this.buttonRezerved.Click += new System.EventHandler(this.rezervedRoomButton);
             // 
-            // label1
+            // labelChangeHotelData
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(452, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(208, 25);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Change Hotel data";
+            this.labelChangeHotelData.AutoSize = true;
+            this.labelChangeHotelData.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelChangeHotelData.Location = new System.Drawing.Point(452, 9);
+            this.labelChangeHotelData.Name = "labelChangeHotelData";
+            this.labelChangeHotelData.Size = new System.Drawing.Size(208, 25);
+            this.labelChangeHotelData.TabIndex = 4;
+            this.labelChangeHotelData.Text = "Change Hotel data";
             // 
-            // label3
+            // labelRoomNumber
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(367, 57);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(121, 20);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Room number";
+            this.labelRoomNumber.AutoSize = true;
+            this.labelRoomNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelRoomNumber.Location = new System.Drawing.Point(367, 57);
+            this.labelRoomNumber.Name = "labelRoomNumber";
+            this.labelRoomNumber.Size = new System.Drawing.Size(121, 20);
+            this.labelRoomNumber.TabIndex = 5;
+            this.labelRoomNumber.Text = "Room number";
             // 
-            // label4
+            // labelPrice
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(367, 94);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 20);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Price";
+            this.labelPrice.AutoSize = true;
+            this.labelPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPrice.Location = new System.Drawing.Point(367, 94);
+            this.labelPrice.Name = "labelPrice";
+            this.labelPrice.Size = new System.Drawing.Size(49, 20);
+            this.labelPrice.TabIndex = 6;
+            this.labelPrice.Text = "Price";
             // 
-            // label5
+            // labelComfortLebel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(370, 133);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(120, 20);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Comfort Level";
+            this.labelComfortLebel.AutoSize = true;
+            this.labelComfortLebel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelComfortLebel.Location = new System.Drawing.Point(370, 133);
+            this.labelComfortLebel.Name = "labelComfortLebel";
+            this.labelComfortLebel.Size = new System.Drawing.Size(120, 20);
+            this.labelComfortLebel.TabIndex = 7;
+            this.labelComfortLebel.Text = "Comfort Level";
             // 
-            // label6
+            // labelCapability
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(370, 177);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(87, 20);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Capability";
+            this.labelCapability.AutoSize = true;
+            this.labelCapability.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCapability.Location = new System.Drawing.Point(370, 177);
+            this.labelCapability.Name = "labelCapability";
+            this.labelCapability.Size = new System.Drawing.Size(87, 20);
+            this.labelCapability.TabIndex = 8;
+            this.labelCapability.Text = "Capability";
             // 
-            // textBox1
+            // RoomNumberTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(519, 59);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(108, 20);
-            this.textBox1.TabIndex = 9;
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.roomNomber_textBox_KeyPress);
+            this.RoomNumberTextBox.Location = new System.Drawing.Point(519, 59);
+            this.RoomNumberTextBox.Name = "RoomNumberTextBox";
+            this.RoomNumberTextBox.Size = new System.Drawing.Size(108, 20);
+            this.RoomNumberTextBox.TabIndex = 9;
+            this.RoomNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
-            // textBox2
+            // PriceTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(519, 94);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(108, 20);
-            this.textBox2.TabIndex = 10;
-            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.price_textBox_KeyPress);
+            this.PriceTextBox.Location = new System.Drawing.Point(519, 94);
+            this.PriceTextBox.Name = "PriceTextBox";
+            this.PriceTextBox.Size = new System.Drawing.Size(108, 20);
+            this.PriceTextBox.TabIndex = 10;
+            this.PriceTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(519, 135);
+            this.textBox3.Location = new System.Drawing.Point(380, 204);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(108, 20);
             this.textBox3.TabIndex = 11;
-            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comfort_level_textBox_KeyPress);
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(519, 177);
+            this.textBox4.Location = new System.Drawing.Point(380, 232);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(108, 20);
             this.textBox4.TabIndex = 12;
-            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.capability_textBox_KeyPress);
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             // 
-            // label7
+            // labelRoomNumberRez
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(371, 273);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(107, 16);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Room Number";
+            this.labelRoomNumberRez.AutoSize = true;
+            this.labelRoomNumberRez.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelRoomNumberRez.Location = new System.Drawing.Point(371, 273);
+            this.labelRoomNumberRez.Name = "labelRoomNumberRez";
+            this.labelRoomNumberRez.Size = new System.Drawing.Size(107, 16);
+            this.labelRoomNumberRez.TabIndex = 13;
+            this.labelRoomNumberRez.Text = "Room Number";
             // 
-            // textBox5
+            // textBoxRoomNumberRez
             // 
-            this.textBox5.Location = new System.Drawing.Point(446, 292);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(56, 20);
-            this.textBox5.TabIndex = 14;
-            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.roomNumberRezerv_textBox_KeyPress);
+            this.textBoxRoomNumberRez.Location = new System.Drawing.Point(446, 292);
+            this.textBoxRoomNumberRez.Name = "textBoxRoomNumberRez";
+            this.textBoxRoomNumberRez.Size = new System.Drawing.Size(56, 20);
+            this.textBoxRoomNumberRez.TabIndex = 14;
+            this.textBoxRoomNumberRez.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
             // 
-            // label8
+            // labelChabgeDate
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(634, 264);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(79, 13);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Change data";
+            this.labelChabgeDate.AutoSize = true;
+            this.labelChabgeDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelChabgeDate.Location = new System.Drawing.Point(634, 264);
+            this.labelChabgeDate.Name = "labelChabgeDate";
+            this.labelChabgeDate.Size = new System.Drawing.Size(79, 13);
+            this.labelChabgeDate.TabIndex = 13;
+            this.labelChabgeDate.Text = "Change date";
             // 
-            // button2
+            // showRoomsButton
             // 
-            this.button2.Location = new System.Drawing.Point(274, 18);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "Show rooms";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.showRoomButton);
+            this.showRoomsButton.Location = new System.Drawing.Point(274, 18);
+            this.showRoomsButton.Name = "showRoomsButton";
+            this.showRoomsButton.Size = new System.Drawing.Size(75, 23);
+            this.showRoomsButton.TabIndex = 15;
+            this.showRoomsButton.Text = "Show rooms";
+            this.showRoomsButton.UseVisualStyleBackColor = true;
+            this.showRoomsButton.Click += new System.EventHandler(this.showRoomButton);
             // 
-            // label9
+            // labelHotelName
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(12, 18);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(67, 25);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "Hotel";
+            this.labelHotelName.AutoSize = true;
+            this.labelHotelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelHotelName.Location = new System.Drawing.Point(12, 18);
+            this.labelHotelName.Name = "labelHotelName";
+            this.labelHotelName.Size = new System.Drawing.Size(67, 25);
+            this.labelHotelName.TabIndex = 16;
+            this.labelHotelName.Text = "Hotel";
             // 
-            // button3
+            // buttonAddRoom
             // 
-            this.button3.Location = new System.Drawing.Point(647, 59);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 35);
-            this.button3.TabIndex = 17;
-            this.button3.Text = "Add room";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.addRoomButton);
+            this.buttonAddRoom.Location = new System.Drawing.Point(647, 59);
+            this.buttonAddRoom.Name = "buttonAddRoom";
+            this.buttonAddRoom.Size = new System.Drawing.Size(100, 35);
+            this.buttonAddRoom.TabIndex = 17;
+            this.buttonAddRoom.Text = "Add room";
+            this.buttonAddRoom.UseVisualStyleBackColor = true;
+            this.buttonAddRoom.Click += new System.EventHandler(this.addRoomButton);
             // 
-            // button4
+            // buttonUodateRoomData
             // 
-            this.button4.Location = new System.Drawing.Point(647, 118);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 35);
-            this.button4.TabIndex = 17;
-            this.button4.Text = "Update room data";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.updateRoomData);
+            this.buttonUodateRoomData.Location = new System.Drawing.Point(647, 118);
+            this.buttonUodateRoomData.Name = "buttonUodateRoomData";
+            this.buttonUodateRoomData.Size = new System.Drawing.Size(100, 35);
+            this.buttonUodateRoomData.TabIndex = 17;
+            this.buttonUodateRoomData.Text = "Update room data";
+            this.buttonUodateRoomData.UseVisualStyleBackColor = true;
+            this.buttonUodateRoomData.Click += new System.EventHandler(this.updateRoomData);
             // 
-            // button5
+            // buttonDeleteRoom
             // 
-            this.button5.Location = new System.Drawing.Point(647, 177);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(100, 35);
-            this.button5.TabIndex = 17;
-            this.button5.Text = "Delete room";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.deleteRoomButton);
+            this.buttonDeleteRoom.Location = new System.Drawing.Point(647, 177);
+            this.buttonDeleteRoom.Name = "buttonDeleteRoom";
+            this.buttonDeleteRoom.Size = new System.Drawing.Size(100, 35);
+            this.buttonDeleteRoom.TabIndex = 17;
+            this.buttonDeleteRoom.Text = "Delete room";
+            this.buttonDeleteRoom.UseVisualStyleBackColor = true;
+            this.buttonDeleteRoom.Click += new System.EventHandler(this.deleteRoomButton);
             // 
-            // label2
+            // labelRoomRezerve
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(486, 227);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(141, 24);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Room rezerve";
+            this.labelRoomRezerve.AutoSize = true;
+            this.labelRoomRezerve.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelRoomRezerve.Location = new System.Drawing.Point(486, 227);
+            this.labelRoomRezerve.Name = "labelRoomRezerve";
+            this.labelRoomRezerve.Size = new System.Drawing.Size(141, 24);
+            this.labelRoomRezerve.TabIndex = 18;
+            this.labelRoomRezerve.Text = "Room rezerve";
             // 
-            // monthCalendar1
+            // monthCalendarChangeDate
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(583, 286);
-            this.monthCalendar1.MaxSelectionCount = 30;
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 19;
+            this.monthCalendarChangeDate.Location = new System.Drawing.Point(583, 286);
+            this.monthCalendarChangeDate.MaxSelectionCount = 30;
+            this.monthCalendarChangeDate.Name = "monthCalendarChangeDate";
+            this.monthCalendarChangeDate.TabIndex = 19;
             // 
-            // label10
+            // labelUserNameRez
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(371, 324);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(86, 16);
-            this.label10.TabIndex = 21;
-            this.label10.Text = "User Name";
+            this.labelUserNameRez.AutoSize = true;
+            this.labelUserNameRez.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelUserNameRez.Location = new System.Drawing.Point(371, 324);
+            this.labelUserNameRez.Name = "labelUserNameRez";
+            this.labelUserNameRez.Size = new System.Drawing.Size(86, 16);
+            this.labelUserNameRez.TabIndex = 21;
+            this.labelUserNameRez.Text = "User Name";
             // 
-            // textBox6
+            // textBoxUserNameRez
             // 
-            this.textBox6.Location = new System.Drawing.Point(446, 345);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(99, 20);
-            this.textBox6.TabIndex = 14;
+            this.textBoxUserNameRez.Location = new System.Drawing.Point(446, 345);
+            this.textBoxUserNameRez.Name = "textBoxUserNameRez";
+            this.textBoxUserNameRez.Size = new System.Drawing.Size(99, 20);
+            this.textBoxUserNameRez.TabIndex = 14;
+            // 
+            // comfortLevelDropList
+            // 
+            this.comfortLevelDropList.FormattingEnabled = true;
+            this.comfortLevelDropList.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3"});
+            this.comfortLevelDropList.Location = new System.Drawing.Point(519, 133);
+            this.comfortLevelDropList.Name = "comfortLevelDropList";
+            this.comfortLevelDropList.Size = new System.Drawing.Size(108, 21);
+            this.comfortLevelDropList.TabIndex = 22;
+            // 
+            // capabilityDropList
+            // 
+            this.capabilityDropList.FormattingEnabled = true;
+            this.capabilityDropList.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4"});
+            this.capabilityDropList.Location = new System.Drawing.Point(519, 177);
+            this.capabilityDropList.Name = "capabilityDropList";
+            this.capabilityDropList.Size = new System.Drawing.Size(108, 21);
+            this.capabilityDropList.TabIndex = 23;
             // 
             // HotelPage
             // 
@@ -308,29 +335,31 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(754, 493);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.monthCalendar1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.capabilityDropList);
+            this.Controls.Add(this.comfortLevelDropList);
+            this.Controls.Add(this.labelUserNameRez);
+            this.Controls.Add(this.monthCalendarChangeDate);
+            this.Controls.Add(this.labelRoomRezerve);
+            this.Controls.Add(this.buttonDeleteRoom);
+            this.Controls.Add(this.buttonUodateRoomData);
+            this.Controls.Add(this.buttonAddRoom);
+            this.Controls.Add(this.labelHotelName);
+            this.Controls.Add(this.showRoomsButton);
+            this.Controls.Add(this.textBoxUserNameRez);
+            this.Controls.Add(this.textBoxRoomNumberRez);
+            this.Controls.Add(this.labelChabgeDate);
+            this.Controls.Add(this.labelRoomNumberRez);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.PriceTextBox);
+            this.Controls.Add(this.RoomNumberTextBox);
+            this.Controls.Add(this.labelCapability);
+            this.Controls.Add(this.labelComfortLebel);
+            this.Controls.Add(this.labelPrice);
+            this.Controls.Add(this.labelRoomNumber);
+            this.Controls.Add(this.labelChangeHotelData);
+            this.Controls.Add(this.buttonRezerved);
+            this.Controls.Add(this.listViewHotels);
             this.Name = "HotelPage";
             this.Text = "HotelPage";
             this.Shown += new System.EventHandler(this.HotelPage_Shown);
@@ -341,33 +370,35 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listViewHotels;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button buttonRezerved;
+        private System.Windows.Forms.Label labelChangeHotelData;
+        private System.Windows.Forms.Label labelRoomNumber;
+        private System.Windows.Forms.Label labelPrice;
+        private System.Windows.Forms.Label labelComfortLebel;
+        private System.Windows.Forms.Label labelCapability;
+        private System.Windows.Forms.TextBox RoomNumberTextBox;
+        private System.Windows.Forms.TextBox PriceTextBox;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label labelRoomNumberRez;
+        private System.Windows.Forms.TextBox textBoxRoomNumberRez;
+        private System.Windows.Forms.Label labelChabgeDate;
+        private System.Windows.Forms.Button showRoomsButton;
+        private System.Windows.Forms.Label labelHotelName;
+        private System.Windows.Forms.Button buttonAddRoom;
+        private System.Windows.Forms.Button buttonUodateRoomData;
+        private System.Windows.Forms.Button buttonDeleteRoom;
         private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label labelRoomRezerve;
+        private System.Windows.Forms.MonthCalendar monthCalendarChangeDate;
+        private System.Windows.Forms.Label labelUserNameRez;
+        private System.Windows.Forms.TextBox textBoxUserNameRez;
+        private System.Windows.Forms.ComboBox comfortLevelDropList;
+        private System.Windows.Forms.ComboBox capabilityDropList;
     }
 }

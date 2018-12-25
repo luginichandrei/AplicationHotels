@@ -17,7 +17,7 @@ namespace WindowsFormsAND
       
         private void showHotels_Click_1(object sender, EventArgs e)
         {
-            listView1.Items.Clear();
+            listViewHotels.Items.Clear();
             con.Open();
             var hotels = new SqlCommand("SELECT * FROM hotels", con);
             SqlDataReader dr = hotels.ExecuteReader();
@@ -27,39 +27,39 @@ namespace WindowsFormsAND
                 item.SubItems.Add(dr["Adress"].ToString());
                 item.SubItems.Add(dr["Is_active"].ToString());
 
-                listView1.Items.Add(item);
+                listViewHotels.Items.Add(item);
             }
             con.Close();
         }
 
         private void addHotelButton_Click(object sender, EventArgs e)
         {
-            useHotelRepo.CreateHotel(textBox1.Text, textBox2.Text, textBox3.Text);
+            useHotelRepo.CreateHotel(textBoxName.Text, textBoxFoundationYear.Text, textBoxAddress.Text);
             MessageBox.Show("Hotel add");    
         }
 
         private void deleteHotelButton_Click_1(object sender, EventArgs e)
         {
-            useHotelRepo.DeleteHotel(textBox1.Text);
-            MessageBox.Show("Hotel " + textBox1.Text.ToUpper() + " delete");
+            useHotelRepo.DeleteHotel(textBoxName.Text);
+            MessageBox.Show("Hotel " + textBoxName.Text.ToUpper() + " delete");
         }
 
         private void updateHotelButton_Click(object sender, EventArgs e)
         {
-            useHotelRepo.UpdateHotel(textBox1.Text, textBox2.Text, textBox3.Text);
-            MessageBox.Show("Hotel " + textBox1.Text.ToUpper() + " Update");
+            useHotelRepo.UpdateHotel(textBoxName.Text, textBoxFoundationYear.Text, textBoxAddress.Text);
+            MessageBox.Show("Hotel " + textBoxName.Text.ToUpper() + " Update");
         }
 
         private void editHotelButton_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(textBox4.Text))
+            if (String.IsNullOrEmpty(textBoxSelectHotel.Text))
             {
                 MessageBox.Show("Enter please hotel name");
             }
             else
             {
                 this.Hide();
-                HotelPage hp = new HotelPage(textBox4.Text);
+                HotelPage hp = new HotelPage(textBoxSelectHotel.Text);
                 hp.Show();
             }
         }

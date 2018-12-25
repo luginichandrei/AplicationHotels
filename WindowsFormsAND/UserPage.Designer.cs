@@ -28,45 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewHotels = new System.Windows.Forms.ListView();
             this.UserPage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Foundation_year = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Address = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Active = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
+            this.buttonAddHotel = new System.Windows.Forms.Button();
+            this.buttonDeleteHotel = new System.Windows.Forms.Button();
+            this.buttonUpdateHotelData = new System.Windows.Forms.Button();
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.textBoxFoundationYear = new System.Windows.Forms.TextBox();
+            this.textBoxAddress = new System.Windows.Forms.TextBox();
+            this.labelName = new System.Windows.Forms.Label();
+            this.labelFoundationYear = new System.Windows.Forms.Label();
+            this.labelAddress = new System.Windows.Forms.Label();
+            this.labelHotelInfo = new System.Windows.Forms.Label();
+            this.labelChangeHotelData = new System.Windows.Forms.Label();
+            this.labelActive = new System.Windows.Forms.Label();
+            this.checkBoxYes = new System.Windows.Forms.CheckBox();
+            this.checkBoxNo = new System.Windows.Forms.CheckBox();
+            this.buttonShowHotels = new System.Windows.Forms.Button();
+            this.textBoxSelectHotel = new System.Windows.Forms.TextBox();
+            this.labelSelectHotel = new System.Windows.Forms.Label();
+            this.buttonEditHotelInfo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listView1
+            // listViewHotels
             // 
-            this.listView1.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewHotels.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.listViewHotels.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.UserPage,
             this.Foundation_year,
             this.Address,
             this.Active});
-            this.listView1.Location = new System.Drawing.Point(12, 43);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(512, 381);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listViewHotels.Location = new System.Drawing.Point(12, 43);
+            this.listViewHotels.Name = "listViewHotels";
+            this.listViewHotels.Size = new System.Drawing.Size(512, 381);
+            this.listViewHotels.TabIndex = 0;
+            this.listViewHotels.UseCompatibleStateImageBehavior = false;
+            this.listViewHotels.View = System.Windows.Forms.View.Details;
             // 
             // UserPage
             // 
@@ -89,177 +89,177 @@
             this.Active.Text = "Active";
             this.Active.Width = 182;
             // 
-            // button1
+            // buttonAddHotel
             // 
-            this.button1.Location = new System.Drawing.Point(530, 255);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(82, 48);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Add  Hotel";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.addHotelButton_Click);
+            this.buttonAddHotel.Location = new System.Drawing.Point(530, 255);
+            this.buttonAddHotel.Name = "buttonAddHotel";
+            this.buttonAddHotel.Size = new System.Drawing.Size(82, 48);
+            this.buttonAddHotel.TabIndex = 1;
+            this.buttonAddHotel.Text = "Add  Hotel";
+            this.buttonAddHotel.UseVisualStyleBackColor = true;
+            this.buttonAddHotel.Click += new System.EventHandler(this.addHotelButton_Click);
             // 
-            // button2
+            // buttonDeleteHotel
             // 
-            this.button2.Location = new System.Drawing.Point(721, 255);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(76, 47);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Delete Hotel";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.deleteHotelButton_Click_1);
+            this.buttonDeleteHotel.Location = new System.Drawing.Point(721, 255);
+            this.buttonDeleteHotel.Name = "buttonDeleteHotel";
+            this.buttonDeleteHotel.Size = new System.Drawing.Size(76, 47);
+            this.buttonDeleteHotel.TabIndex = 2;
+            this.buttonDeleteHotel.Text = "Delete Hotel";
+            this.buttonDeleteHotel.UseVisualStyleBackColor = true;
+            this.buttonDeleteHotel.Click += new System.EventHandler(this.deleteHotelButton_Click_1);
             // 
-            // button3
+            // buttonUpdateHotelData
             // 
-            this.button3.Location = new System.Drawing.Point(613, 255);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(108, 47);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Update Hotel Data";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.updateHotelButton_Click);
+            this.buttonUpdateHotelData.Location = new System.Drawing.Point(613, 255);
+            this.buttonUpdateHotelData.Name = "buttonUpdateHotelData";
+            this.buttonUpdateHotelData.Size = new System.Drawing.Size(108, 47);
+            this.buttonUpdateHotelData.TabIndex = 3;
+            this.buttonUpdateHotelData.Text = "Update Hotel Data";
+            this.buttonUpdateHotelData.UseVisualStyleBackColor = true;
+            this.buttonUpdateHotelData.Click += new System.EventHandler(this.updateHotelButton_Click);
             // 
-            // textBox1
+            // textBoxName
             // 
-            this.textBox1.Location = new System.Drawing.Point(588, 70);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(176, 20);
-            this.textBox1.TabIndex = 4;
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nameHotel_textBox_KeyPress);
+            this.textBoxName.Location = new System.Drawing.Point(588, 70);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(176, 20);
+            this.textBoxName.TabIndex = 4;
+            this.textBoxName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nameHotel_textBox_KeyPress);
             // 
-            // textBox2
+            // textBoxFoundationYear
             // 
-            this.textBox2.Location = new System.Drawing.Point(588, 121);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(176, 20);
-            this.textBox2.TabIndex = 5;
-            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotelFoundationYear_textBox_KeyPress);
+            this.textBoxFoundationYear.Location = new System.Drawing.Point(588, 121);
+            this.textBoxFoundationYear.Name = "textBoxFoundationYear";
+            this.textBoxFoundationYear.Size = new System.Drawing.Size(176, 20);
+            this.textBoxFoundationYear.TabIndex = 5;
+            this.textBoxFoundationYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hotelFoundationYear_textBox_KeyPress);
             // 
-            // textBox3
+            // textBoxAddress
             // 
-            this.textBox3.Location = new System.Drawing.Point(588, 163);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(176, 20);
-            this.textBox3.TabIndex = 5;
+            this.textBoxAddress.Location = new System.Drawing.Point(588, 163);
+            this.textBoxAddress.Name = "textBoxAddress";
+            this.textBoxAddress.Size = new System.Drawing.Size(176, 20);
+            this.textBoxAddress.TabIndex = 5;
             // 
-            // label1
+            // labelName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(541, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 16);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Name";
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelName.Location = new System.Drawing.Point(541, 51);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(49, 16);
+            this.labelName.TabIndex = 6;
+            this.labelName.Text = "Name";
             // 
-            // label2
+            // labelFoundationYear
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(541, 102);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 16);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Foundation Year";
-            this.label2.UseWaitCursor = true;
+            this.labelFoundationYear.AutoSize = true;
+            this.labelFoundationYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelFoundationYear.Location = new System.Drawing.Point(541, 102);
+            this.labelFoundationYear.Name = "labelFoundationYear";
+            this.labelFoundationYear.Size = new System.Drawing.Size(122, 16);
+            this.labelFoundationYear.TabIndex = 6;
+            this.labelFoundationYear.Text = "Foundation Year";
+            this.labelFoundationYear.UseWaitCursor = true;
             // 
-            // label3
+            // labelAddress
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(541, 144);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 16);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Address";
+            this.labelAddress.AutoSize = true;
+            this.labelAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelAddress.Location = new System.Drawing.Point(541, 144);
+            this.labelAddress.Name = "labelAddress";
+            this.labelAddress.Size = new System.Drawing.Size(66, 16);
+            this.labelAddress.TabIndex = 6;
+            this.labelAddress.Text = "Address";
             // 
-            // label4
+            // labelHotelInfo
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(169, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(113, 25);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Hotel Info";
+            this.labelHotelInfo.AutoSize = true;
+            this.labelHotelInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelHotelInfo.Location = new System.Drawing.Point(169, 9);
+            this.labelHotelInfo.Name = "labelHotelInfo";
+            this.labelHotelInfo.Size = new System.Drawing.Size(113, 25);
+            this.labelHotelInfo.TabIndex = 7;
+            this.labelHotelInfo.Text = "Hotel Info";
             // 
-            // label5
+            // labelChangeHotelData
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(556, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(208, 25);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Change Hotel data";
+            this.labelChangeHotelData.AutoSize = true;
+            this.labelChangeHotelData.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelChangeHotelData.Location = new System.Drawing.Point(556, 9);
+            this.labelChangeHotelData.Name = "labelChangeHotelData";
+            this.labelChangeHotelData.Size = new System.Drawing.Size(208, 25);
+            this.labelChangeHotelData.TabIndex = 7;
+            this.labelChangeHotelData.Text = "Change Hotel data";
             // 
-            // label6
+            // labelActive
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(537, 202);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 16);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Active";
+            this.labelActive.AutoSize = true;
+            this.labelActive.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelActive.Location = new System.Drawing.Point(537, 202);
+            this.labelActive.Name = "labelActive";
+            this.labelActive.Size = new System.Drawing.Size(51, 16);
+            this.labelActive.TabIndex = 6;
+            this.labelActive.Text = "Active";
             // 
-            // checkBox1
+            // checkBoxYes
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(588, 221);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(42, 17);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "yes";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBoxYes.AutoSize = true;
+            this.checkBoxYes.Location = new System.Drawing.Point(588, 221);
+            this.checkBoxYes.Name = "checkBoxYes";
+            this.checkBoxYes.Size = new System.Drawing.Size(42, 17);
+            this.checkBoxYes.TabIndex = 8;
+            this.checkBoxYes.Text = "yes";
+            this.checkBoxYes.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // checkBoxNo
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(668, 221);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(38, 17);
-            this.checkBox2.TabIndex = 9;
-            this.checkBox2.Text = "no";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBoxNo.AutoSize = true;
+            this.checkBoxNo.Location = new System.Drawing.Point(670, 221);
+            this.checkBoxNo.Name = "checkBoxNo";
+            this.checkBoxNo.Size = new System.Drawing.Size(38, 17);
+            this.checkBoxNo.TabIndex = 9;
+            this.checkBoxNo.Text = "no";
+            this.checkBoxNo.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // buttonShowHotels
             // 
-            this.button4.Location = new System.Drawing.Point(351, 12);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "Show hotels";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.showHotels_Click_1);
+            this.buttonShowHotels.Location = new System.Drawing.Point(351, 12);
+            this.buttonShowHotels.Name = "buttonShowHotels";
+            this.buttonShowHotels.Size = new System.Drawing.Size(75, 23);
+            this.buttonShowHotels.TabIndex = 10;
+            this.buttonShowHotels.Text = "Show hotels";
+            this.buttonShowHotels.UseVisualStyleBackColor = true;
+            this.buttonShowHotels.Click += new System.EventHandler(this.showHotels_Click_1);
             // 
-            // textBox4
+            // textBoxSelectHotel
             // 
-            this.textBox4.Location = new System.Drawing.Point(588, 338);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(176, 20);
-            this.textBox4.TabIndex = 5;
-            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.selectHoteLTextBox_KeyPress);
+            this.textBoxSelectHotel.Location = new System.Drawing.Point(588, 338);
+            this.textBoxSelectHotel.Name = "textBoxSelectHotel";
+            this.textBoxSelectHotel.Size = new System.Drawing.Size(176, 20);
+            this.textBoxSelectHotel.TabIndex = 5;
+            this.textBoxSelectHotel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.selectHoteLTextBox_KeyPress);
             // 
-            // label7
+            // labelSelectHotel
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(530, 319);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(93, 16);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Select Hotel";
+            this.labelSelectHotel.AutoSize = true;
+            this.labelSelectHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelSelectHotel.Location = new System.Drawing.Point(530, 319);
+            this.labelSelectHotel.Name = "labelSelectHotel";
+            this.labelSelectHotel.Size = new System.Drawing.Size(93, 16);
+            this.labelSelectHotel.TabIndex = 6;
+            this.labelSelectHotel.Text = "Select Hotel";
             // 
-            // button5
+            // buttonEditHotelInfo
             // 
-            this.button5.Location = new System.Drawing.Point(670, 364);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(127, 34);
-            this.button5.TabIndex = 11;
-            this.button5.Text = "Edit Hotel Information";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.editHotelButton_Click);
+            this.buttonEditHotelInfo.Location = new System.Drawing.Point(670, 364);
+            this.buttonEditHotelInfo.Name = "buttonEditHotelInfo";
+            this.buttonEditHotelInfo.Size = new System.Drawing.Size(127, 34);
+            this.buttonEditHotelInfo.TabIndex = 11;
+            this.buttonEditHotelInfo.Text = "Edit Hotel Information";
+            this.buttonEditHotelInfo.UseVisualStyleBackColor = true;
+            this.buttonEditHotelInfo.Click += new System.EventHandler(this.editHotelButton_Click);
             // 
             // User
             // 
@@ -267,25 +267,25 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.buttonEditHotelInfo);
+            this.Controls.Add(this.buttonShowHotels);
+            this.Controls.Add(this.checkBoxNo);
+            this.Controls.Add(this.checkBoxYes);
+            this.Controls.Add(this.labelChangeHotelData);
+            this.Controls.Add(this.labelHotelInfo);
+            this.Controls.Add(this.labelActive);
+            this.Controls.Add(this.labelSelectHotel);
+            this.Controls.Add(this.labelAddress);
+            this.Controls.Add(this.labelFoundationYear);
+            this.Controls.Add(this.labelName);
+            this.Controls.Add(this.textBoxSelectHotel);
+            this.Controls.Add(this.textBoxAddress);
+            this.Controls.Add(this.textBoxFoundationYear);
+            this.Controls.Add(this.textBoxName);
+            this.Controls.Add(this.buttonUpdateHotelData);
+            this.Controls.Add(this.buttonDeleteHotel);
+            this.Controls.Add(this.buttonAddHotel);
+            this.Controls.Add(this.listViewHotels);
             //this.Name = "User";
             this.Text = "UserPage";
             this.ResumeLayout(false);
@@ -295,29 +295,29 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listViewHotels;
         private System.Windows.Forms.ColumnHeader Name;
         private System.Windows.Forms.ColumnHeader Foundation_year;
         private System.Windows.Forms.ColumnHeader Address;
         private System.Windows.Forms.ColumnHeader Active;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button buttonAddHotel;
+        private System.Windows.Forms.Button buttonDeleteHotel;
+        private System.Windows.Forms.Button buttonUpdateHotelData;
+        private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.TextBox textBoxFoundationYear;
+        private System.Windows.Forms.TextBox textBoxAddress;
+        private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.Label labelFoundationYear;
+        private System.Windows.Forms.Label labelAddress;
+        private System.Windows.Forms.Label labelHotelInfo;
+        private System.Windows.Forms.Label labelChangeHotelData;
+        private System.Windows.Forms.Label labelActive;
+        private System.Windows.Forms.CheckBox checkBoxYes;
+        private System.Windows.Forms.CheckBox checkBoxNo;
+        private System.Windows.Forms.Button buttonShowHotels;
         private System.Windows.Forms.ColumnHeader UserPage;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox textBoxSelectHotel;
+        private System.Windows.Forms.Label labelSelectHotel;
+        private System.Windows.Forms.Button buttonEditHotelInfo;
     }
 }
