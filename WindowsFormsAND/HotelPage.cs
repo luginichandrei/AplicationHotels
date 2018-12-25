@@ -36,7 +36,7 @@ namespace WindowsFormsAND
 
         private void button2_Click(object sender, EventArgs e)
         {
-            useRoomRepo.GetAll(hotelName);
+            //useRoomRepo.GetAll(hotelName); 
             listView1.Items.Clear();
             con.Open();
             SqlCommand hotelId = new SqlCommand("SELECT id FROM hotels WHERE Name='" + hotelName + "'", con);
