@@ -9,6 +9,6 @@ namespace Models
         public string NameHotel { get; set; }
         public string FoundationYear { get; set; }
         public string Address { get; set; }
-        public bool IsActive { get; set; }
+        public string IsActive { get; set; }
     }
 }

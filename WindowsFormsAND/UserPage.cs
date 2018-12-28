@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using DataAccessLayer;
 
 namespace WindowsFormsAND
 {
     public partial class User : Form
     {
-
-        SqlConnection con = new SqlConnection(@"Data Source=CH1649\SQLEXPRESS;Initial Catalog=TESTAND;Integrated Security=True");
         public User()
         {
             InitializeComponent();
@@ -18,36 +15,57 @@ namespace WindowsFormsAND
         private void showHotels_Click_1(object sender, EventArgs e)
         {
             listViewHotels.Items.Clear();
-            con.Open();
-            var hotels = new SqlCommand("SELECT * FROM hotels", con);
-            SqlDataReader dr = hotels.ExecuteReader();
-            while (dr.Read()){
-                ListViewItem item = new ListViewItem(dr["Name"].ToString());
-                item.SubItems.Add(dr["Foundation_year"].ToString());
-                item.SubItems.Add(dr["Adress"].ToString());
-                item.SubItems.Add(dr["Is_active"].ToString());
+            var hotels = useHotelRepo.GetAll();
+            
+            foreach (var h in hotels){
+                ListViewItem item = new ListViewItem(h.NameHotel);
+                item.SubItems.Add(h.FoundationYear);
+                item.SubItems.Add(h.Address);
+                item.SubItems.Add(h.IsActive);
 
                 listViewHotels.Items.Add(item);
             }
-            con.Close();
         }
 
         private void addHotelButton_Click(object sender, EventArgs e)
         {
-            useHotelRepo.CreateHotel(textBoxName.Text, textBoxFoundationYear.Text, textBoxAddress.Text);
-            MessageBox.Show("Hotel add");    
+            if (String.IsNullOrEmpty(textBoxSelectHotel.Text) || String.IsNullOrEmpty(textBoxFoundationYear.Text) || String.IsNullOrEmpty(textBoxAddress.Text))
+            {
+                MessageBox.Show("field is empty");
+            }
+            else
+            {
+                useHotelRepo.CreateHotel(textBoxName.Text, textBoxFoundationYear.Text, textBoxAddress.Text);
+                MessageBox.Show("Hotel add");   
+            }
+                
         }
 
         private void deleteHotelButton_Click_1(object sender, EventArgs e)
         {
-            useHotelRepo.DeleteHotel(textBoxName.Text);
-            MessageBox.Show("Hotel " + textBoxName.Text.ToUpper() + " delete");
+            if (String.IsNullOrEmpty(textBoxName.Text))
+            {
+                MessageBox.Show("field |Hotel name| is empty");
+            }
+            else
+            {
+                useHotelRepo.DeleteHotel(textBoxName.Text);
+                MessageBox.Show("Hotel " + textBoxName.Text.ToUpper() + " delete");
+            }
         }
 
         private void updateHotelButton_Click(object sender, EventArgs e)
         {
-            useHotelRepo.UpdateHotel(textBoxName.Text, textBoxFoundationYear.Text, textBoxAddress.Text);
-            MessageBox.Show("Hotel " + textBoxName.Text.ToUpper() + " Update");
+            if (String.IsNullOrEmpty(textBoxSelectHotel.Text) || String.IsNullOrEmpty(textBoxFoundationYear.Text) || String.IsNullOrEmpty(textBoxAddress.Text))
+            {
+                MessageBox.Show("field is empty");
+            }
+            else
+            {
+                useHotelRepo.UpdateHotel(textBoxName.Text, textBoxFoundationYear.Text, textBoxAddress.Text);
+                MessageBox.Show("Hotel " + textBoxName.Text.ToUpper() + " Update");
+            }
+            
         }
 
         private void editHotelButton_Click(object sender, EventArgs e)
