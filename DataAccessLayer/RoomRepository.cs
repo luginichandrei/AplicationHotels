@@ -131,5 +131,38 @@ namespace DataAccessLayer
             }
             return result;
         }
+
+        public List<RezervedDays> GetRezervedDays(string hotelName, int roomNumber)
+        {
+            var result = new List<RezervedDays>();
+
+            var connectionString = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+
+                var getList = @"SELECT   checkouts.start_date, checkouts.end_date
+                                FROM hotels
+                                LEFT JOIN rooms ON Hotels_id=hotels.id
+                                LEFT JOIN checkouts ON checkouts.room_id=rooms.id
+                                LEFT JOIN users ON checkouts.user_id=users.id
+                                where hotels.Name=@hotelName and rooms.Number=@roomNumber";
+                con.Open();
+                using (var hotels = new SqlCommand(getList, con))
+                {
+                    hotels.Parameters.Add(new SqlParameter("hotelName", hotelName));
+                    hotels.Parameters.Add(new SqlParameter("roomNumber", roomNumber));
+                    SqlDataReader dr = hotels.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        var item = new RezervedDays();
+                        item.StartDate = DateTime.Parse(dr["start_date"].ToString());
+                        item.EndDate = DateTime.Parse(dr["end_date"].ToString());
+                        result.Add(item);
+                    }
+                }
+            }
+            return result;
+
+        }
     }
 }

@@ -103,6 +103,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
+      <Project>{E6197762-2750-4F39-8FB9-1CE4F1CC1A08}</Project>
+      <Name>BusinessLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
       <Project>{30061738-1b39-4f7d-8210-3f7e90582985}</Project>
       <Name>DataAccessLayer</Name>

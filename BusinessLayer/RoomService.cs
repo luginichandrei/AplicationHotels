@@ -1,15 +1,20 @@
-﻿using Models;
+﻿using DataAccessLayer;
+using Models;
 using System;
 using System.Collections.Generic;
 
 namespace BusinessLayer
 {
 
-
     public class RoomService
     {
-        public List<BookedDays> GetBookedDays( DateTime startTime, DateTime endTime, List<RezervedDays> rezervedDays)
+        RoomRepository useRoomRepo = new RoomRepository();
+
+        public List<BookedDays> GetBookedDays( DateTime startTime, DateTime endTime, string hotelName, int roomNumber)
         {
+
+            var rezervedDays = useRoomRepo.GetRezervedDays(hotelName, roomNumber);
+
             var result = new List<BookedDays>();
             var sd = startTime;
             
@@ -19,13 +24,16 @@ namespace BusinessLayer
                        new BookedDays(){
                        StartDate = sd,
                        EndDate = rd.StartDate.AddDays(-1),
-                       Status = "Free period"});
+                           Status = Enum.GetName(typeof(PeriodWithStatus), PeriodWithStatus.FreePeriod)
+                       });
 
                        result.Add(
-                       new BookedDays() { 
-                       StartDate = rd.StartDate,
-                       EndDate = rd.EndDate,
-                       Status = "Rezerved period"});
+                       new BookedDays()
+                       {
+                           StartDate = rd.StartDate,
+                           EndDate = rd.EndDate,
+                           Status = Enum.GetName(typeof(PeriodWithStatus), PeriodWithStatus.ReservedPeriod)
+                       });
                 sd = rd.EndDate.AddDays(1);
                 }
             return result;

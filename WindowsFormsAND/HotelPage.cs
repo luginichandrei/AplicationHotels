@@ -1,4 +1,5 @@
-﻿using DataAccessLayer;
+﻿using BusinessLayer;
+using DataAccessLayer;
 using System;
 using System.Windows.Forms;
 
@@ -15,11 +16,11 @@ namespace WindowsFormsAND
             hotelName = text;
         }
         RoomRepository useRoomRepo = new RoomRepository();
-
+        RoomService useRoomService = new RoomService();
 
         private void showRoomButton(object sender, EventArgs e)
         {
-            
+            useRoomService.GetBookedDays(DateTime.Now, DateTime.Now, "kyiv", 123 );
             listViewHotels.Items.Clear();
             var rooms  = useRoomRepo.GetAll(hotelName);
 
