@@ -2,9 +2,11 @@
 using Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BusinessLayer
 {
+
 
     public class RoomService
     {
@@ -39,24 +41,26 @@ namespace BusinessLayer
             return result;
         }
 
-        public List<TopRoom> GetRoomRating(DateTime startTime, DateTime endTime, List<RoomRating> rooms)
+        public List<TopRoom> GetRoomRating(DateTime startTime, DateTime endTime, string hotelName)
         {
+            var rooms = useRoomRepo.GetRoomsRating(hotelName);
+
+
             var result = new List<TopRoom>();
-            foreach(var ms in rooms)
+            foreach (var ms in rooms)
             {
-                var total = 0;
-                foreach(var c in ms.Days)
+                result.Add(new TopRoom()
                 {
-                    var cd = (int)(c.EndDate - c.StartDate).TotalDays;
-                    total += cd;
-                }
-                result.Add(new TopRoom() {
                     RoomNumber = ms.RoomNumber,
                     HotelName = ms.HotelName,
-                    CountDay = total
+                    CountRezerve = rooms.Where(x => x.RoomNumber == ms.RoomNumber).Count()
                 });
             }
-            return result;
+
+            var query = result.GroupBy(x => x.RoomNumber).Select(y => y.First()).Take(10).ToList();
+
+
+            return query;
         }
     }
 }

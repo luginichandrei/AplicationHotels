@@ -20,7 +20,8 @@ namespace WindowsFormsAND
 
         private void showRoomButton(object sender, EventArgs e)
         {
-            useRoomService.GetBookedDays(DateTime.Now, DateTime.Now, "kyiv", 123 );
+            useRoomService.GetBookedDays(DateTime.Now, DateTime.Now, "Edelweiss", 221 );
+            useRoomService.GetRoomRating(DateTime.Now, DateTime.Now, "Edelweiss");
             listViewHotels.Items.Clear();
             var rooms  = useRoomRepo.GetAll(hotelName);
 

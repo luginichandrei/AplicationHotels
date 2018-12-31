@@ -164,5 +164,45 @@ namespace DataAccessLayer
             return result;
 
         }
+
+
+        public  List<RoomRating> GetRoomsRating(string hotelName)
+        {
+            var result = new List<RoomRating>();
+
+        var connectionString = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
+                    using (SqlConnection con = new SqlConnection(connectionString))
+                    {
+
+                        var getList = @"SELECT   hotels.Name, rooms.Number, checkouts.end_date
+                                        FROM hotels
+                                        LEFT JOIN rooms ON Hotels_id=hotels.id
+                                        LEFT JOIN checkouts ON checkouts.room_id=rooms.id
+                                        where hotels.Name=@hotelName";
+                        con.Open();
+                        using (var hotels = new SqlCommand(getList, con))
+                        {
+                            hotels.Parameters.Add(new SqlParameter("hotelName", hotelName));
+                            SqlDataReader dr = hotels.ExecuteReader();
+                            while (dr.Read())
+                            {
+                                var item = new RoomRating();
+                                item.HotelName = dr["Name"].ToString();
+                                item.RoomNumber = Convert.ToInt32(dr["Number"]);
+                                if (dr["end_date"] != DBNull.Value) {
+                                 item.Days= DateTime.Parse(dr["end_date"].ToString());
+                                } else
+                                    {
+
+                                     item.Days = new DateTime();
+                                    }
+                                
+                                result.Add(item);
+                            }
+                        }
+                    }
+                    return result;
+
+        }
     }
 }

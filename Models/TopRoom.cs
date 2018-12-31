@@ -6,8 +6,8 @@ namespace Models
 {
     public class TopRoom
     {
-        public int RoomNumber { get; set; }
         public string HotelName { get; set; }
-        public int CountDay { get; set; }
+        public int RoomNumber { get; set; }        
+        public int CountRezerve { get; set; }
     }
 }
