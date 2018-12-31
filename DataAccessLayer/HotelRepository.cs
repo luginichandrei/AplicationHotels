@@ -9,9 +9,6 @@ namespace DataAccessLayer
 {
     public class HotelRepository 
     {
-        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["db"].ConnectionString);
-        
-
         public void CreateHotel(string name, string year, string address, int active = 1)
         {
             var connectionString = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
@@ -65,7 +62,7 @@ namespace DataAccessLayer
 
 
         
-        public List<Hotel> GetAll()
+        public virtual List<Hotel> GetAll()
         {
             List<Hotel> result = new List<Hotel>();
             var connectionString = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
@@ -78,6 +75,7 @@ namespace DataAccessLayer
                     while (dr.Read())
                     {
                         var item = new Hotel();
+                        
                         item.NameHotel = dr["Name"].ToString();
                         item.FoundationYear = dr["Foundation_year"].ToString();
                         item.Address = dr["Adress"].ToString();

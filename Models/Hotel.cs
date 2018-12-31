@@ -6,6 +6,7 @@ namespace Models
 {
     public class Hotel
     {
+        
         public string NameHotel { get; set; }
         public string FoundationYear { get; set; }
         public string Address { get; set; }
