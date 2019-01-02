@@ -9,7 +9,7 @@ namespace DataAccessLayer
 {
     public class HotelRepository 
     {
-        public virtual int CreateHotel(string name, string year, string address, int active = 1)
+        public virtual void CreateHotel(string name, string year, string address, int active = 1)
         {
             var connectionString = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -25,7 +25,6 @@ namespace DataAccessLayer
                     addhotel.ExecuteNonQuery();  
                 }
             }
-            return 1;
         }
 
         public virtual void DeleteHotel(string command)
@@ -78,9 +77,9 @@ namespace DataAccessLayer
                         var item = new Hotel();
                         
                         item.NameHotel = dr["Name"].ToString();
-                        item.FoundationYear = dr["Foundation_year"].ToString();
+                        item.FoundationYear = Convert.ToInt32(dr["Foundation_year"]);
                         item.Address = dr["Adress"].ToString();
-                        item.IsActive = dr["Is_active"].ToString();
+                        item.IsActive = Convert.ToInt32(dr["Is_active"]);
                         result.Add(item);
                     }
 

@@ -17,21 +17,21 @@ namespace XUnitTest
         {
             new Hotel {
                 NameHotel = "Kyiv",
-                FoundationYear = "1955",
+                FoundationYear = 1955,
                 Address = "Chernivtsi",
-                IsActive ="true"
+                IsActive =1
             },
             new Hotel {
                 NameHotel = "Bukovina",
-                FoundationYear = "1965",
+                FoundationYear = 1965,
                 Address = "Kyiv",
-                IsActive = "true"
+                IsActive = 1
             },
             new Hotel {
                 NameHotel = "Maidan",
-                FoundationYear = "2001",
+                FoundationYear = 2001,
                 Address = "Praga",
-                IsActive = "true"
+                IsActive = 1
             }
         };
 
@@ -54,21 +54,21 @@ namespace XUnitTest
         {
             new Hotel {
                 NameHotel = "Kyiv",
-                FoundationYear = "1955",
+                FoundationYear = 1955,
                 Address = "Chernivtsi",
-                IsActive ="true"
+                IsActive =1
             },
             new Hotel {
                 NameHotel = "Bukovina",
-                FoundationYear = "1965",
+                FoundationYear = 1965,
                 Address = "Kyiv",
-                IsActive = "true"
+                IsActive = 1
             },
             new Hotel {
                 NameHotel = "Maidan",
-                FoundationYear = "2001",
+                FoundationYear = 2001,
                 Address = "Praga",
-                IsActive = "true"
+                IsActive = 1
             }
         };
 
@@ -78,19 +78,6 @@ namespace XUnitTest
 
             int productCount = mockHotelRepository.Object.GetAll().Count;
             Assert.Equal(3, productCount);
-
-            mockHotelRepository.Setup(mr => mr.CreateHotel("Maidan", "2001", "Praga", 1)).Returns(
-                () =>
-                {
-                    hotels.Add(
-                        new Hotel {
-                            NameHotel = "Maidan",
-                            FoundationYear = "2001",
-                            Address = "Praga",
-                            IsActive = "true"
-                        });
-                    return 1;
-                });
 
             mockHotelRepository.Object.CreateHotel("Maidan", "2001", "Praga", 1);
 

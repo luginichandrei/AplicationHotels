@@ -19,7 +19,7 @@ namespace WindowsFormsAND
             
             foreach (var h in hotels){
                 ListViewItem item = new ListViewItem(h.NameHotel);
-                item.SubItems.Add(h.FoundationYear);
+                item.SubItems.Add(h.FoundationYear.ToString());
                 item.SubItems.Add(h.Address);
                 item.SubItems.Add(h.IsActive.ToString());
 

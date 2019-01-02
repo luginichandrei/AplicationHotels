@@ -152,10 +152,23 @@ namespace DataAccessLayer
                     hotels.Parameters.Add(new SqlParameter("hotelName", hotelName));
                     hotels.Parameters.Add(new SqlParameter("roomNumber", roomNumber));
                     SqlDataReader dr = hotels.ExecuteReader();
+                    var startDateIndex = 0;
+
+                    var columnIndexes = new Dictionary<string, int>();
+                    for (var i =0; i<dr.FieldCount; i++)
+                    {
+                        columnIndexes.Add(dr.GetName(i), i);
+                    }
+
                     while (dr.Read())
                     {
                         var item = new RezervedDays();
-                        item.StartDate = DateTime.Parse(dr["start_date"].ToString());
+
+                        if (columnIndexes.ContainsKey("start_date")) item.StartDate = dr.GetDateTime(columnIndexes["start_date"]);
+                        else throw new Exception("Missing result column name " + "start_date");
+
+
+                        item.StartDate = dr.GetDateTime(startDateIndex);
                         item.EndDate = DateTime.Parse(dr["end_date"].ToString());
                         result.Add(item);
                     }
@@ -190,19 +203,16 @@ namespace DataAccessLayer
                                 item.HotelName = dr["Name"].ToString();
                                 item.RoomNumber = Convert.ToInt32(dr["Number"]);
                                 if (dr["end_date"] != DBNull.Value) {
-                                 item.Days= DateTime.Parse(dr["end_date"].ToString());
+                                    item.Days= DateTime.Parse(dr["end_date"].ToString());
                                 } else
                                     {
-
                                      item.Days = new DateTime();
                                     }
-                                
                                 result.Add(item);
                             }
                         }
                     }
                     return result;
-
         }
     }
 }

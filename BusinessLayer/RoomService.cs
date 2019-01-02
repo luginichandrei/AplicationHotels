@@ -12,7 +12,7 @@ namespace BusinessLayer
     {
         RoomRepository useRoomRepo = new RoomRepository();
 
-        public List<BookedDays> GetBookedDays( DateTime startTime, DateTime endTime, string hotelName, int roomNumber)
+        public virtual List<BookedDays> GetBookedDays( DateTime startTime, DateTime endTime, string hotelName, int roomNumber)
         {
 
             var rezervedDays = useRoomRepo.GetRezervedDays(hotelName, roomNumber);
@@ -41,10 +41,9 @@ namespace BusinessLayer
             return result;
         }
 
-        public List<TopRoom> GetRoomRating(DateTime startTime, DateTime endTime, string hotelName)
+        public virtual List<TopRoom> GetRoomRating(DateTime startTime, DateTime endTime, string hotelName)
         {
             var rooms = useRoomRepo.GetRoomsRating(hotelName);
-
 
             var result = new List<TopRoom>();
             foreach (var ms in rooms)
@@ -56,11 +55,7 @@ namespace BusinessLayer
                     CountRezerve = rooms.Where(x => x.RoomNumber == ms.RoomNumber).Count()
                 });
             }
-
-            var query = result.GroupBy(x => x.RoomNumber).Select(y => y.First()).Take(10).ToList();
-
-
-            return query;
+            return result.GroupBy(x => x.RoomNumber).Select(y => y.First()).OrderByDescending(x => x.CountRezerve).Take(10).ToList(); 
         }
     }
 }

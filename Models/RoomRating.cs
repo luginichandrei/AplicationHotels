@@ -8,6 +8,6 @@ namespace Models
     {
         public int RoomNumber { get; set; }
         public string HotelName { get; set; }
-        public DateTime Days { get; set; }
+        public DateTime? Days { get; set; }
     }
 }
