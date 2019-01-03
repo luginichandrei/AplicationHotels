@@ -34,6 +34,7 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonRezerved = new System.Windows.Forms.Button();
             this.labelChangeHotelData = new System.Windows.Forms.Label();
             this.labelRoomNumber = new System.Windows.Forms.Label();
@@ -42,8 +43,6 @@
             this.labelCapability = new System.Windows.Forms.Label();
             this.RoomNumberTextBox = new System.Windows.Forms.TextBox();
             this.PriceTextBox = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.labelRoomNumberRez = new System.Windows.Forms.Label();
             this.textBoxRoomNumberRez = new System.Windows.Forms.TextBox();
             this.labelChabgeDate = new System.Windows.Forms.Label();
@@ -58,7 +57,6 @@
             this.textBoxUserNameRez = new System.Windows.Forms.TextBox();
             this.comfortLevelDropList = new System.Windows.Forms.ComboBox();
             this.capabilityDropList = new System.Windows.Forms.ComboBox();
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // listViewHotels
@@ -101,6 +99,11 @@
             // 
             this.columnHeader5.Text = "Rezerved to";
             this.columnHeader5.Width = 72;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Rezerved by";
+            this.columnHeader6.Width = 73;
             // 
             // buttonRezerved
             // 
@@ -177,22 +180,6 @@
             this.PriceTextBox.Size = new System.Drawing.Size(108, 20);
             this.PriceTextBox.TabIndex = 10;
             this.PriceTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(464, 227);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(108, 20);
-            this.textBox3.TabIndex = 11;
-            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(656, 250);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(108, 20);
-            this.textBox4.TabIndex = 12;
-            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             // 
             // labelRoomNumberRez
             // 
@@ -331,11 +318,6 @@
             this.capabilityDropList.Size = new System.Drawing.Size(108, 21);
             this.capabilityDropList.TabIndex = 23;
             // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Rezerved by";
-            this.columnHeader6.Width = 73;
-            // 
             // HotelPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -356,8 +338,6 @@
             this.Controls.Add(this.textBoxRoomNumberRez);
             this.Controls.Add(this.labelChabgeDate);
             this.Controls.Add(this.labelRoomNumberRez);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.PriceTextBox);
             this.Controls.Add(this.RoomNumberTextBox);
             this.Controls.Add(this.labelCapability);
@@ -390,8 +370,6 @@
         private System.Windows.Forms.Label labelCapability;
         private System.Windows.Forms.TextBox RoomNumberTextBox;
         private System.Windows.Forms.TextBox PriceTextBox;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label labelRoomNumberRez;
         private System.Windows.Forms.TextBox textBoxRoomNumberRez;
         private System.Windows.Forms.Label labelChabgeDate;

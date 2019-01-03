@@ -11,7 +11,7 @@ namespace Models
         public DateTime Checkout { get; set; }
 
         public int UserId { get; set; }
-        public Users Users { get; set; }
+        public User Users { get; set; }
         public int RoomId { get; set; }
         public Room Rooms { get; set; }
     }

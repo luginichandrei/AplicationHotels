@@ -57,11 +57,10 @@ namespace BusinessLayer
         {
             return roomContext.Set<Room>().Where(x=> x.Number==number).Single();
         }
-        public IQueryable<Room> GetAll()
+        public virtual IQueryable<Room> GetAll()
         {
            return roomContext.Rooms.AsNoTracking();
         }
-        
 
         public List<Rezervation> GetByHotelId(int hotelId)
         {
@@ -73,8 +72,20 @@ namespace BusinessLayer
            return rooms;
         }
 
-        RoomRepository useRoomRepo = new RoomRepository();
+        public Rezervation AddRezerve(Rezervation entity)
+        {
+            roomContext.Set<Rezervation>().Add(entity);
+            roomContext.SaveChanges();
+            return entity;
+        }
 
+        public User FindUser(string name)
+        {
+            return roomContext.Users.Where(x => x.Name == name).Single();
+        }
+
+
+        RoomRepository useRoomRepo = new RoomRepository();
 
         public virtual List<BookedDays> GetBookedDays( DateTime startTime, DateTime endTime, string hotelName, int roomNumber)
         {

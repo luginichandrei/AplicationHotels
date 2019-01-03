@@ -13,9 +13,9 @@ namespace DataAccessLayer
 
         public ClientDbContext(DbContextOptions<ClientDbContext> options) : base(options) { }
 
-        public DbSet<Hotel> Hotels { get; set; }
-        public DbSet<Room> Rooms { get; set; }
-        public DbSet<Users> Users { get; set; }
+        public virtual DbSet<Hotel> Hotels { get; set; }
+        public virtual DbSet<Room> Rooms { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Rezervation> Rezervations { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

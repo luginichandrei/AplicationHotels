@@ -16,10 +16,9 @@ namespace BusinessLayer
         public HotelService(ClientDbContext hotelContext)
         {
             this.hotelContext = hotelContext;
-            
         }
 
-        public Hotel Create(Hotel entity)
+        public virtual Hotel Create(Hotel entity)
         {
             hotelContext.Set<Hotel>().Add(entity);
             hotelContext.SaveChanges();
@@ -50,7 +49,7 @@ namespace BusinessLayer
             return hotelContext.Set<Hotel>().Find(id);
         }
 
-        public IQueryable<Hotel> GetAll()
+        public virtual IQueryable<Hotel> GetAll()
         {
             return hotelContext.Hotels.AsNoTracking();
         }
