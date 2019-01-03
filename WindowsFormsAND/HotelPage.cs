@@ -1,5 +1,6 @@
 ﻿using BusinessLayer;
 using DataAccessLayer;
+using Models;
 using System;
 using System.Windows.Forms;
 
@@ -7,37 +8,30 @@ namespace WindowsFormsAND
 {
     public partial class HotelPage : Form
     {
-        
         private string hotelName;
-       
+        RoomService roomService = new RoomService(ContextResolver.GetContext());
         public HotelPage(string text)
         {
             InitializeComponent();
             hotelName = text;
         }
-        RoomRepository useRoomRepo = new RoomRepository();
-        RoomService useRoomService = new RoomService();
 
         private void showRoomButton(object sender, EventArgs e)
         {
-            useRoomService.GetBookedDays(DateTime.Now, DateTime.Now, "Edelweiss", 221 );
-            useRoomService.GetRoomRating(DateTime.Now, DateTime.Now, "Edelweiss");
             listViewHotels.Items.Clear();
-            var rooms  = useRoomRepo.GetAll(hotelName);
+            var rooms  = roomService.GetAll();
 
             foreach (var h in rooms)
             {
-                ListViewItem item = new ListViewItem(h.NumberRoom);
-                item.SubItems.Add(h.Price);
-                item.SubItems.Add(h.ComfortLevel);
-                item.SubItems.Add(h.Capability);
-                item.SubItems.Add(h.ReserveTo);
-                item.SubItems.Add(h.UserName);
+                ListViewItem item = new ListViewItem(h.Number.ToString());
+                item.SubItems.Add(h.Price.ToString());
+                item.SubItems.Add(h.ComfortLevel.ToString());
+                item.SubItems.Add(h.Capability.ToString());
+                //item.SubItems.Add(h.ReserveTo);
+                //item.SubItems.Add(h.UserName);
 
                 listViewHotels.Items.Add(item);
             }
-
-
         }
         
         private void HotelPage_Shown(object sender, EventArgs e)
@@ -47,13 +41,24 @@ namespace WindowsFormsAND
 
         private void addRoomButton(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(RoomNumberTextBox.Text) || String.IsNullOrEmpty(PriceTextBox.Text) || String.IsNullOrEmpty(textBox3.Text) || String.IsNullOrEmpty(textBox4.Text))
+            if (String.IsNullOrEmpty(RoomNumberTextBox.Text) || String.IsNullOrEmpty(PriceTextBox.Text) || String.IsNullOrEmpty(comfortLevelDropList.Text) || String.IsNullOrEmpty(capabilityDropList.Text))
             {
                 MessageBox.Show("field is empty");
             }
             else
             {
-                useRoomRepo.CreateRoom(Convert.ToInt32(RoomNumberTextBox.Text), Convert.ToInt32(PriceTextBox.Text), Convert.ToInt32(textBox3.Text), Convert.ToInt32(textBox4.Text), hotelName);
+                var hotelid = roomService.FindByName(hotelName);
+                var room = new Room
+                {
+                    Number=Convert.ToInt32(RoomNumberTextBox.Text),
+                    Price =Convert.ToInt32(PriceTextBox.Text), 
+                    ComfortLevel= Convert.ToInt32(comfortLevelDropList.Text),
+                    Capability = Convert.ToInt32(capabilityDropList.Text),
+                    Created = DateTime.UtcNow,
+                    Modified= DateTime.UtcNow,
+                    HotelId = hotelid.Id
+                };
+                roomService.Create(room);
                 MessageBox.Show("Room " + RoomNumberTextBox.Text + " add to hotel " + hotelName);
             }
 
@@ -67,7 +72,8 @@ namespace WindowsFormsAND
             }
             else
             {
-                useRoomRepo.DeleteRoom(Convert.ToInt32(RoomNumberTextBox.Text));
+                var idRoom= roomService.FindByNumber(Convert.ToInt32(RoomNumberTextBox.Text));
+                roomService.Delete(idRoom);
                 MessageBox.Show("Room " + RoomNumberTextBox.Text + " remove to hotel " + hotelName);
             }
             
@@ -81,7 +87,19 @@ namespace WindowsFormsAND
             }
             else
             {
-                useRoomRepo.UpdateRoom(Convert.ToInt32(RoomNumberTextBox.Text), Convert.ToInt32(PriceTextBox.Text), Convert.ToInt32(comfortLevelDropList.Text), Convert.ToInt32(capabilityDropList.Text), hotelName);
+                var hotelid = roomService.FindByName(hotelName);
+                var currentId = roomService.FindByNumber(Convert.ToInt32(RoomNumberTextBox.Text)).Id;
+                var room = new Room()
+                {
+                    Id= currentId,
+                    Number = Convert.ToInt32(RoomNumberTextBox.Text),
+                    Price = Convert.ToInt32(PriceTextBox.Text),
+                    ComfortLevel = Convert.ToInt32(comfortLevelDropList.Text),
+                    Capability = Convert.ToInt32(capabilityDropList.Text),
+                    Modified = DateTime.UtcNow,
+                    HotelId = hotelid.Id
+                };
+                roomService.Update(room);
                 MessageBox.Show("Room " + RoomNumberTextBox.Text + " update in hotel " + hotelName);
             }
         }
@@ -94,7 +112,7 @@ namespace WindowsFormsAND
             }
             else
             {
-                useRoomRepo.Rezerve(Convert.ToInt32(textBoxRoomNumberRez.Text), textBoxUserNameRez.Text, monthCalendarChangeDate.SelectionStart.ToString("s"), monthCalendarChangeDate.SelectionEnd.ToString("s"));
+                //useRoomRepo.Rezerve(Convert.ToInt32(textBoxRoomNumberRez.Text), textBoxUserNameRez.Text, monthCalendarChangeDate.SelectionStart.ToString("s"), monthCalendarChangeDate.SelectionEnd.ToString("s"));
                 MessageBox.Show("Room " + textBoxRoomNumberRez.Text + " rezerve for " + textBoxUserNameRez.Text + " from " + monthCalendarChangeDate.SelectionStart + "to" + monthCalendarChangeDate.SelectionEnd);
             }
         }

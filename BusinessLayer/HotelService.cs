@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer;
+using Microsoft.EntityFrameworkCore;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -9,51 +10,54 @@ namespace BusinessLayer
 {
     public class HotelService
     {
+        private ClientDbContext hotelContext;
+        private HotelService() { }
+
+        public HotelService(ClientDbContext hotelContext)
+        {
+            this.hotelContext = hotelContext;
+            
+        }
+
         public Hotel Create(Hotel entity)
         {
-            using (var context = new ClientDbContext())
-            {
-                context.Set<Hotel>().Add(entity);
-                context.SaveChanges();
-                return entity;
-            }
+            hotelContext.Set<Hotel>().Add(entity);
+            hotelContext.SaveChanges();
+            return entity;
         }
 
         public Hotel Update(Hotel entity)
         {
-            using (var context = new ClientDbContext())
-            {
-                context.Set<Hotel>().Attach(entity);
-                context.SaveChanges();
-                return entity;
-            }
+            var local = hotelContext.Set<Hotel>()
+                        .Local
+                        .FirstOrDefault(entry => entry.Id.Equals(entity.Id));
+            hotelContext.Entry(local).State = EntityState.Detached;
+            hotelContext.Entry(entity).State = EntityState.Modified;
+            hotelContext.SaveChanges();
+            return entity;
         }
 
         public Hotel Delete(Hotel entity)
         {
-            using (var context = new ClientDbContext())
-            {
-                context.Set<Hotel>().Attach(entity);
-                context.Set<Hotel>().Remove(entity);
-                context.SaveChanges();
-                return entity;
-            }
+            hotelContext.Set<Hotel>().Attach(entity);
+            hotelContext.Set<Hotel>().Remove(entity);
+            hotelContext.SaveChanges();
+            return entity;
         }
 
         public Hotel GetById(int id)
         {
-            using (var context = new ClientDbContext())
-            {
-                return context.Set<Hotel>().Find(id);
-            }
+            return hotelContext.Set<Hotel>().Find(id);
         }
 
         public IQueryable<Hotel> GetAll()
         {
-            using (var context = new ClientDbContext())
-            {
-                return context.Hotels;
-            }
+            return hotelContext.Hotels.AsNoTracking();
+        }
+
+        public Hotel FindByName (string name)
+        {
+            return hotelContext.Hotels.Where(x => x.Name == name).Single();
         }
     }
 }

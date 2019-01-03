@@ -9,8 +9,6 @@ namespace DataAccessLayer
 {
     public class ClientDbContext : DbContext
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
-
         public ClientDbContext() : base() { }
 
         public ClientDbContext(DbContextOptions<ClientDbContext> options) : base(options) { }
@@ -22,7 +20,7 @@ namespace DataAccessLayer
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["db"].ConnectionString);
         }
     }
 }

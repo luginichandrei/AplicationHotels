@@ -10,63 +10,68 @@ namespace BusinessLayer
 {
     public class RoomService
     {
+        
+        private readonly ClientDbContext roomContext;
+
+        public RoomService(ClientDbContext roomContext)
+        {
+            this.roomContext = roomContext;
+        }
+
         public Room Create(Room entity)
         {
-            using (var context = new ClientDbContext())
-            {
-                context.Set<Room>().Add(entity);
-                context.SaveChanges();
-                return entity;
-            }
+             roomContext.Set<Room>().Add(entity);
+             roomContext.SaveChanges();
+             return entity;
         }
 
         public Room Update(Room entity)
         {
-            using (var context = new ClientDbContext())
-            {
-                context.Set<Room>().Attach(entity);
-                context.SaveChanges();
-                return entity;
-            }
+            var local = roomContext.Set<Room>()
+                        .Local.FirstOrDefault(entry => entry.Id.Equals(entity.Id));
+            roomContext.Entry(local).State = EntityState.Detached;
+            roomContext.Entry(entity).State = EntityState.Modified;
+            roomContext.SaveChanges();
+            return entity;
         }
         
         public Room Delete(Room entity)
         {
-            using (var context = new ClientDbContext())
-            {
-                context.Set<Room>().Attach(entity);
-                context.Set<Room>().Remove(entity);
-                context.SaveChanges();
-                return entity;
-            }
+            roomContext.Set<Room>().Attach(entity);
+            roomContext.Entry(entity).State = EntityState.Deleted;            
+            roomContext.SaveChanges();
+            return entity;
         }
 
         public Room GetById(int id)
         {
-            using (var context = new ClientDbContext())
-            {
-                return context.Set<Room>().Find(id);
-            }
+           return roomContext.Set<Room>().Find(id);
         }
 
+        public Hotel FindByName(string name)
+        {
+            return roomContext.Hotels.Where(x => x.Name == name).Single();
+        }
+
+        public Room FindByNumber(int number)
+        {
+            return roomContext.Set<Room>().Where(x=> x.Number==number).Single();
+        }
         public IQueryable<Room> GetAll()
         {
-            using(var context = new ClientDbContext()){
-                return context.Rooms;
-            }
+           return roomContext.Rooms.AsNoTracking();
         }
+        
 
-        public List<Rezervation> GetRezervedDays(int userId, int roomId)
+        public List<Rezervation> GetByHotelId(int hotelId)
         {
-                using (var context = new ClientDbContext())
-                {
-                    var room = context.Rezervations                 
-                    .Where(x=> x.RoomId==roomId && x.UserId==userId).ToList();
-                return room;
-                }
+           var rooms = roomContext.Rezervations
+               .Include(x=> x.Rooms)
+                   .Where(x=> x.Rooms.HotelId==hotelId && x.RoomId==x.Rooms.Id)
+                .AsNoTracking()
+                .ToList();
+           return rooms;
         }
-
-
 
         RoomRepository useRoomRepo = new RoomRepository();
 
