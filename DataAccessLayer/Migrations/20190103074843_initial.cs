@@ -14,12 +14,12 @@ namespace DataAccessLayer.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    NameHotel = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
                     FoundationYear = table.Column<int>(nullable: false),
                     Address = table.Column<string>(nullable: true),
                     IsActive = table.Column<int>(nullable: false),
-                    DateCreate = table.Column<DateTime>(nullable: false),
-                    DateModify = table.Column<DateTime>(nullable: false)
+                    Created = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -34,8 +34,8 @@ namespace DataAccessLayer.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
-                    DateCreate = table.Column<DateTime>(nullable: false),
-                    DateModify = table.Column<DateTime>(nullable: false)
+                    Created = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -52,8 +52,8 @@ namespace DataAccessLayer.Migrations
                     Price = table.Column<int>(nullable: false),
                     ComfortLevel = table.Column<int>(nullable: false),
                     Capability = table.Column<int>(nullable: false),
-                    DateCreate = table.Column<DateTime>(nullable: false),
-                    DateModify = table.Column<DateTime>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: false),
                     HotelId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -68,28 +68,28 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Checkouts",
+                name: "Rezervations",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    StartDate = table.Column<DateTime>(nullable: false),
-                    EndDate = table.Column<DateTime>(nullable: false),
+                    Checkin = table.Column<DateTime>(nullable: false),
+                    Checkout = table.Column<DateTime>(nullable: false),
                     UserId = table.Column<int>(nullable: false),
                     UsersId = table.Column<int>(nullable: true),
                     RoomId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Checkouts", x => x.Id);
+                    table.PrimaryKey("PK_Rezervations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Checkouts_Rooms_RoomId",
+                        name: "FK_Rezervations_Rooms_RoomId",
                         column: x => x.RoomId,
                         principalTable: "Rooms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Checkouts_Users_UsersId",
+                        name: "FK_Rezervations_Users_UsersId",
                         column: x => x.UsersId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -97,13 +97,13 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Checkouts_RoomId",
-                table: "Checkouts",
+                name: "IX_Rezervations_RoomId",
+                table: "Rezervations",
                 column: "RoomId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Checkouts_UsersId",
-                table: "Checkouts",
+                name: "IX_Rezervations_UsersId",
+                table: "Rezervations",
                 column: "UsersId");
 
             migrationBuilder.CreateIndex(
@@ -115,7 +115,7 @@ namespace DataAccessLayer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Checkouts");
+                name: "Rezervations");
 
             migrationBuilder.DropTable(
                 name: "Rooms");

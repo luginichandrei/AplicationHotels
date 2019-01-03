@@ -76,7 +76,7 @@ namespace DataAccessLayer
                     {
                         var item = new Hotel();
                         
-                        item.NameHotel = dr["Name"].ToString();
+                        item.Name = dr["Name"].ToString();
                         item.FoundationYear = Convert.ToInt32(dr["Foundation_year"]);
                         item.Address = dr["Adress"].ToString();
                         item.IsActive = Convert.ToInt32(dr["Is_active"]);

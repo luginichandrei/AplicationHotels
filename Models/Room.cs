@@ -11,11 +11,10 @@ namespace Models
         public int Price { get; set; }
         public int ComfortLevel {get;set;}
         public int Capability { get; set; }
-        public DateTime DateCreate { get; set; }
-        public DateTime DateModify { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime Modified { get; set; }
 
         public int HotelId { get; set; }
-        public Hotel Hotel { get; set; }
-        public List<Checkouts> Checkouts { get; set; }
+        public Hotel Hotel { get; set; }       
     }
 }

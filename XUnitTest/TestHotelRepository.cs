@@ -16,19 +16,19 @@ namespace XUnitTest
             List<Hotel> hotels = new List<Hotel>
         {
             new Hotel {
-                NameHotel = "Kyiv",
+                Name = "Kyiv",
                 FoundationYear = 1955,
                 Address = "Chernivtsi",
                 IsActive =1
             },
             new Hotel {
-                NameHotel = "Bukovina",
+                Name = "Bukovina",
                 FoundationYear = 1965,
                 Address = "Kyiv",
                 IsActive = 1
             },
             new Hotel {
-                NameHotel = "Maidan",
+                Name = "Maidan",
                 FoundationYear = 2001,
                 Address = "Praga",
                 IsActive = 1
@@ -53,19 +53,19 @@ namespace XUnitTest
             List<Hotel> hotels = new List<Hotel>
         {
             new Hotel {
-                NameHotel = "Kyiv",
+                Name = "Kyiv",
                 FoundationYear = 1955,
                 Address = "Chernivtsi",
                 IsActive =1
             },
             new Hotel {
-                NameHotel = "Bukovina",
+                Name = "Bukovina",
                 FoundationYear = 1965,
                 Address = "Kyiv",
                 IsActive = 1
             },
             new Hotel {
-                NameHotel = "Maidan",
+                Name = "Maidan",
                 FoundationYear = 2001,
                 Address = "Praga",
                 IsActive = 1

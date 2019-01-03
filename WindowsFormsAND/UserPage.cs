@@ -18,7 +18,7 @@ namespace WindowsFormsAND
             var hotels = useHotelRepo.GetAll();
             
             foreach (var h in hotels){
-                ListViewItem item = new ListViewItem(h.NameHotel);
+                ListViewItem item = new ListViewItem(h.Name);
                 item.SubItems.Add(h.FoundationYear.ToString());
                 item.SubItems.Add(h.Address);
                 item.SubItems.Add(h.IsActive.ToString());

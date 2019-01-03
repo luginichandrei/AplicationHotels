@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(ClientDbContext))]
-    [Migration("20190102130559_initial")]
+    [Migration("20190103074843_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,17 +21,40 @@ namespace DataAccessLayer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Models.Checkouts", b =>
+            modelBuilder.Entity("Models.Hotel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("EndDate");
+                    b.Property<string>("Address");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<int>("FoundationYear");
+
+                    b.Property<int>("IsActive");
+
+                    b.Property<DateTime>("Modified");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Hotels");
+                });
+
+            modelBuilder.Entity("Models.Rezervation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Checkin");
+
+                    b.Property<DateTime>("Checkout");
 
                     b.Property<int>("RoomId");
-
-                    b.Property<DateTime>("StartDate");
 
                     b.Property<int>("UserId");
 
@@ -43,30 +66,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("UsersId");
 
-                    b.ToTable("Checkouts");
-                });
-
-            modelBuilder.Entity("Models.Hotel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Address");
-
-                    b.Property<DateTime>("DateCreate");
-
-                    b.Property<DateTime>("DateModify");
-
-                    b.Property<int>("FoundationYear");
-
-                    b.Property<int>("IsActive");
-
-                    b.Property<string>("NameHotel");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Hotels");
+                    b.ToTable("Rezervations");
                 });
 
             modelBuilder.Entity("Models.Room", b =>
@@ -79,11 +79,11 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<int>("ComfortLevel");
 
-                    b.Property<DateTime>("DateCreate");
-
-                    b.Property<DateTime>("DateModify");
+                    b.Property<DateTime>("Created");
 
                     b.Property<int>("HotelId");
+
+                    b.Property<DateTime>("Modified");
 
                     b.Property<int>("Number");
 
@@ -102,11 +102,11 @@ namespace DataAccessLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateCreate");
-
-                    b.Property<DateTime>("DateModify");
+                    b.Property<DateTime>("Created");
 
                     b.Property<string>("Email");
+
+                    b.Property<DateTime>("Modified");
 
                     b.Property<string>("Name");
 
@@ -115,15 +115,15 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Models.Checkouts", b =>
+            modelBuilder.Entity("Models.Rezervation", b =>
                 {
                     b.HasOne("Models.Room", "Rooms")
-                        .WithMany("Checkouts")
+                        .WithMany()
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Models.Users", "Users")
-                        .WithMany("Checkouts")
+                        .WithMany()
                         .HasForeignKey("UsersId");
                 });
 

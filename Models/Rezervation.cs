@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Models
 {
-    public class Checkouts
+    public class Rezervation
     {
         public int Id { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime Checkin { get; set; }
+        public DateTime Checkout { get; set; }
 
         public int UserId { get; set; }
         public Users Users { get; set; }

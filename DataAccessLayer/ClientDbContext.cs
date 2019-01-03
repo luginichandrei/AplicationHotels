@@ -18,7 +18,7 @@ namespace DataAccessLayer
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Users> Users { get; set; }
-        public DbSet<Checkouts> Checkouts { get; set; }
+        public DbSet<Rezervation> Rezervations { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
