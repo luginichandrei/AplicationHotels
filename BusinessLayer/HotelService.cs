@@ -46,7 +46,7 @@ namespace BusinessLayer
 
         public Hotel GetById(int id)
         {
-            return hotelContext.Set<Hotel>().Find(id);
+            return hotelContext.Hotels.Find(id);
         }
 
         public virtual IQueryable<Hotel> GetAll()

@@ -8,6 +8,6 @@ namespace BusinessLayer
 {
     public class ContextResolver
     {
-        public static ClientDbContext GetContext()=> new ClientDbContext();
+        public static ClientDbContext GetContext() => new ClientDbContext();
     }
 }
