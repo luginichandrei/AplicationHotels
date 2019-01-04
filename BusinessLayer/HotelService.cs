@@ -10,53 +10,53 @@ namespace BusinessLayer
 {
     public class HotelService
     {
-        private ClientDbContext hotelContext;
-        private HotelService() { }
+        private ClientDbContext context;
 
-        public HotelService(ClientDbContext hotelContext)
+        public HotelService(ClientDbContext context)
         {
-            this.hotelContext = hotelContext;
+            this.context = context;
         }
 
         public virtual Hotel Create(Hotel entity)
         {
-            hotelContext.Set<Hotel>().Add(entity);
-            hotelContext.SaveChanges();
+            context.Hotels.Add(entity);
+            context.SaveChanges();
             return entity;
         }
 
         public Hotel Update(Hotel entity)
         {
-            var local = hotelContext.Set<Hotel>()
+            var local = context.Hotels
                         .Local
                         .FirstOrDefault(entry => entry.Id.Equals(entity.Id));
-            hotelContext.Entry(local).State = EntityState.Detached;
-            hotelContext.Entry(entity).State = EntityState.Modified;
-            hotelContext.SaveChanges();
+            context.Entry(local).State = EntityState.Detached;
+            context.Entry(entity).State = EntityState.Modified;
+            context.SaveChanges();
             return entity;
         }
 
         public Hotel Delete(Hotel entity)
         {
-            hotelContext.Set<Hotel>().Attach(entity);
-            hotelContext.Set<Hotel>().Remove(entity);
-            hotelContext.SaveChanges();
+            context.Hotels.Attach(entity);
+            context.Hotels.Remove(entity);
+            context.SaveChanges();
             return entity;
         }
 
         public Hotel GetById(int id)
         {
-            return hotelContext.Hotels.Find(id);
+            return context.Hotels.Find(id);
         }
 
         public virtual IQueryable<Hotel> GetAll()
         {
-            return hotelContext.Hotels.AsNoTracking();
+            return context.Hotels.AsNoTracking();
         }
 
         public Hotel FindByName (string name)
         {
-            return hotelContext.Hotels.Where(x => x.Name == name).Single();
+            return context.Hotels.Where(x => x.Name == name).Single();
         }
+
     }
 }

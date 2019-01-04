@@ -11,79 +11,53 @@ namespace BusinessLayer
     public class RoomService
     {
         
-        private readonly ClientDbContext roomContext;
+        private readonly ClientDbContext context;
 
-        public RoomService(ClientDbContext roomContext)
+        public RoomService(ClientDbContext context)
         {
-            this.roomContext = roomContext;
+            this.context = context;
         }
 
         public Room Create(Room entity)
         {
-             roomContext.Rooms.Add(entity);
-             roomContext.SaveChanges();
+             context.Rooms.Add(entity);
+             context.SaveChanges();
              return entity;
         }
 
         public Room Update(Room entity)
         {
-            var local = roomContext.Set<Room>()
+            var local = context.Rooms
                         .Local.FirstOrDefault(entry => entry.Id.Equals(entity.Id));
-            roomContext.Entry(local).State = EntityState.Detached;
-            roomContext.Entry(entity).State = EntityState.Modified;
-            roomContext.SaveChanges();
+            context.Entry(local).State = EntityState.Detached;
+            context.Entry(entity).State = EntityState.Modified;
+            context.SaveChanges();
             return entity;
         }
         
         public Room Delete(Room entity)
         {
-            roomContext.Set<Room>().Attach(entity);
-            roomContext.Entry(entity).State = EntityState.Deleted;            
-            roomContext.SaveChanges();
+            context.Rooms.Attach(entity);
+            context.Entry(entity).State = EntityState.Deleted;            
+            context.SaveChanges();
             return entity;
         }
 
         public Room GetById(int id)
         {
-           return roomContext.Set<Room>().Find(id);
-        }
-
-        public Hotel FindByName(string name)
-        {
-            return roomContext.Hotels.Where(x => x.Name == name).Single();
+           return context.Rooms.Find(id);
         }
 
         public Room FindByNumber(int number)
         {
-            return roomContext.Set<Room>().Where(x=> x.Number==number).Single();
+            return context.Rooms.Where(x=> x.Number==number).Single();
         }
 
         public virtual IQueryable<Room> GetAll()
         {
-           return roomContext.Rooms.AsNoTracking();
+           return context.Rooms.AsNoTracking();
         }
 
-        public List<Rezervation> GetByHotelId(int hotelId)
-        {
-           var rooms = roomContext.Rezervations
-               .Include(x=> x.Rooms)
-                   .Where(x=> x.Rooms.HotelId==hotelId && x.RoomId==x.Rooms.Id)
-                .AsNoTracking()
-                .ToList();
-           return rooms;
-        }
-
-        public Rezervation AddRezerve(Rezervation entity)
-        {
-            roomContext.Set<Rezervation>().Add(entity);
-            roomContext.SaveChanges();
-            return entity;
-        }
-
-        public User FindUser(string name)
-        {
-            return roomContext.Users.Where(x => x.Name == name).Single();
-        }
 
         public List<RezervedDays> GetRezervedDays(int hotelId, int roomId)
         {

@@ -9,9 +9,16 @@ namespace DataAccessLayer
 {
     public class ClientDbContext : DbContext
     {
+        private readonly string connectionString;
+
         public ClientDbContext() : base() { }
 
         public ClientDbContext(DbContextOptions<ClientDbContext> options) : base(options) { }
+
+        public ClientDbContext(string connectionString) 
+        {
+            this.connectionString = connectionString;
+        }
 
         public virtual DbSet<Hotel> Hotels { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
@@ -20,7 +27,7 @@ namespace DataAccessLayer
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["db"].ConnectionString);
+            optionsBuilder.UseSqlServer(connectionString);
         }
     }
 }
