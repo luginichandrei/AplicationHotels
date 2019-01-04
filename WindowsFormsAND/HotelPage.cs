@@ -52,7 +52,7 @@ namespace WindowsFormsAND
                 {
                     var roomService = new RoomService(ctx);
 
-                    var hotelid = roomService.FindByName(hotelName);
+                    //var hotelid = roomService.FindByName(hotelName);
                     var room = new Room
                     {
                         Number = Convert.ToInt32(RoomNumberTextBox.Text),
@@ -61,7 +61,7 @@ namespace WindowsFormsAND
                         Capability = Convert.ToInt32(capabilityDropList.Text),
                         Created = DateTime.UtcNow,
                         Modified = DateTime.UtcNow,
-                        HotelId = hotelid.Id
+                        //HotelId = hotelid.Id
                     };
                     roomService.Create(room);
                     MessageBox.Show("Room " + RoomNumberTextBox.Text + " add to hotel " + hotelName);
@@ -100,7 +100,7 @@ namespace WindowsFormsAND
                 {
                     var roomService = new RoomService(ctx);
 
-                    var hotelid = roomService.FindByName(hotelName);
+                    //var hotelid = roomService.FindByName(hotelName);
                     var currentId = roomService.FindByNumber(Convert.ToInt32(RoomNumberTextBox.Text)).Id;
                     var room = new Room()
                     {
@@ -110,7 +110,7 @@ namespace WindowsFormsAND
                         ComfortLevel = Convert.ToInt32(comfortLevelDropList.Text),
                         Capability = Convert.ToInt32(capabilityDropList.Text),
                         Modified = DateTime.UtcNow,
-                        HotelId = hotelid.Id
+                       // HotelId = hotelid.Id
                     };
                     roomService.Update(room);
                     MessageBox.Show("Room " + RoomNumberTextBox.Text + " update in hotel " + hotelName);
@@ -131,15 +131,15 @@ namespace WindowsFormsAND
                     var roomService = new RoomService(ctx);
 
                     var roomId = roomService.FindByNumber(Convert.ToInt32(textBoxRoomNumberRez.Text)).Id;
-                    var userId = roomService.FindUser(textBoxUserNameRez.Text).Id;
+                    //var userId = roomService.FindUser(textBoxUserNameRez.Text).Id;
                     var rezerve = new Rezervation()
                     {
                         Checkin = monthCalendarChangeDate.SelectionStart,
                         Checkout = monthCalendarChangeDate.SelectionEnd,
                         RoomId = roomId,
-                        UserId = userId
+                        //UserId = userId
                     };
-                    roomService.AddRezerve(rezerve);
+                    //roomService.AddRezerve(rezerve);
                     MessageBox.Show("Room " + textBoxRoomNumberRez.Text + " rezerve for " + textBoxUserNameRez.Text + " from " + monthCalendarChangeDate.SelectionStart + "to" + monthCalendarChangeDate.SelectionEnd);
                 }
             }
