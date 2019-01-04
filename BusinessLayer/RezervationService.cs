@@ -1,6 +1,7 @@
 ﻿using DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,8 +23,9 @@ namespace BusinessLayer
             return entity;
         }
 
-        public Rezervation Delete(Rezervation entity)
+        public Rezervation Delete(int id)
         {
+            var entity = new Rezervation() { Id = id };
             context.Set<Rezervation>().Attach(entity);
             context.Entry(entity).State = EntityState.Deleted;
             context.SaveChanges();
@@ -58,6 +60,52 @@ namespace BusinessLayer
             context.Entry(entity).State = EntityState.Modified;
             context.SaveChanges();
             return entity;
+        }
+
+        public List<RezervedDays> GetRezervedDays(DateTime start, DateTime end, int roomId)
+        {
+            var result = new List<RezervedDays>();
+
+            var days = context.Rezervations
+                    .Where(x => x.RoomId == roomId && x.Checkin <= start && x.Checkout >= end)
+                 .AsNoTracking().ToList();
+
+            foreach (var d in days)
+            {
+                result.Add(new RezervedDays()
+                {
+                    StartDate = d.Checkin,
+                    EndDate = d.Checkout
+                });
+            }
+            return result;
+        }
+
+        public List<BookedDays> GetBookedDay(DateTime start, DateTime end, int roomId)
+        {
+            var result = new List<BookedDays>();
+            var rezervedDays = GetRezervedDays(start, end, roomId);
+            var sd = start;
+            foreach (var rd in rezervedDays)
+            {
+                result.Add(
+                new BookedDays()
+                {
+                    StartDate = sd,
+                    EndDate = rd.StartDate.AddDays(-1),
+                    Status = Enum.GetName(typeof(PeriodWithStatus), PeriodWithStatus.FreePeriod)
+                });
+
+                result.Add(
+                new BookedDays()
+                {
+                    StartDate = rd.StartDate,
+                    EndDate = rd.EndDate,
+                    Status = Enum.GetName(typeof(PeriodWithStatus), PeriodWithStatus.ReservedPeriod)
+                });
+                sd = rd.EndDate.AddDays(1);
+            }
+            return result;
         }
     }
 }

@@ -21,8 +21,9 @@ namespace BusinessLayer
             return entity;
         }
 
-        public Hotel Delete(Hotel entity)
+        public Hotel Delete(int id)
         {
+            var entity = new Hotel() { Id = id };
             context.Hotels.Attach(entity);
             context.Hotels.Remove(entity);
             context.SaveChanges();

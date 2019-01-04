@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{E6197762-2750-4F39-8FB9-1CE4F1CC1A08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTest", "XUnitTest\XUnitTest.csproj", "{9D455912-FD12-461F-BB83-904E10077F9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTest", "XUnitTest\XUnitTest.csproj", "{9D455912-FD12-461F-BB83-904E10077F9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLayer", "WebLayer\WebLayer.csproj", "{A45F8E0C-5774-4E1E-B6C4-0DEF874A9922}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{9D455912-FD12-461F-BB83-904E10077F9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D455912-FD12-461F-BB83-904E10077F9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D455912-FD12-461F-BB83-904E10077F9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A45F8E0C-5774-4E1E-B6C4-0DEF874A9922}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A45F8E0C-5774-4E1E-B6C4-0DEF874A9922}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A45F8E0C-5774-4E1E-B6C4-0DEF874A9922}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A45F8E0C-5774-4E1E-B6C4-0DEF874A9922}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

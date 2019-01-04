@@ -33,8 +33,9 @@ namespace BusinessLayer
             return entity;
         }
 
-        public Room Delete(Room entity)
+        public Room Delete(int id)
         {
+            var entity = new Room() { Id = id };
             context.Rooms.Attach(entity);
             context.Entry(entity).State = EntityState.Deleted;
             context.SaveChanges();
@@ -56,56 +57,17 @@ namespace BusinessLayer
             return context.Rooms.AsNoTracking();
         }
 
-        public List<RezervedDays> GetRezervedDays(int hotelId, int roomId)
+        public List<RoomRating> GetRoomsRating(int hotelId)
         {
-            var result = new List<RezervedDays>();
-
-            //var days = roomContext.Rezervations.Contains(roomId);
-
+            var result = new List<RoomRating>();
+            var rr = context.Hotels.Where(x => x.Id == hotelId)
+                .Include(x => x.Rooms.Where(r => r.HotelId == hotelId));
             return result;
         }
 
-        public List<BookedDays> GetBookedDay(int hotelId, int roomId)
+        public virtual List<TopRoom> GetRoomRating(DateTime startTime, DateTime endTime, int hotelId)
         {
-            var result = new List<BookedDays>();
-            var rezervedDays = GetRezervedDays(hotelId, roomId);
-
-            return result;
-        }
-
-        private RoomRepository useRoomRepo = new RoomRepository();
-
-        public virtual List<BookedDays> GetBookedDays(DateTime startTime, DateTime endTime, string hotelName, int roomNumber)
-        {
-            var rezervedDays = useRoomRepo.GetRezervedDays(hotelName, roomNumber);
-            var result = new List<BookedDays>();
-            var sd = startTime;
-
-            foreach (var rd in rezervedDays)
-            {
-                result.Add(
-                new BookedDays()
-                {
-                    StartDate = sd,
-                    EndDate = rd.StartDate.AddDays(-1),
-                    Status = Enum.GetName(typeof(PeriodWithStatus), PeriodWithStatus.FreePeriod)
-                });
-
-                result.Add(
-                new BookedDays()
-                {
-                    StartDate = rd.StartDate,
-                    EndDate = rd.EndDate,
-                    Status = Enum.GetName(typeof(PeriodWithStatus), PeriodWithStatus.ReservedPeriod)
-                });
-                sd = rd.EndDate.AddDays(1);
-            }
-            return result;
-        }
-
-        public virtual List<TopRoom> GetRoomRating(DateTime startTime, DateTime endTime, string hotelName)
-        {
-            var rooms = useRoomRepo.GetRoomsRating(hotelName);
+            var rooms = GetRoomsRating(hotelId);
 
             var result = new List<TopRoom>();
             foreach (var ms in rooms)

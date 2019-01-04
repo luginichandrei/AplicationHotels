@@ -82,7 +82,7 @@ namespace WindowsFormsAND
                     var roomService = new RoomService(ctx);
 
                     var idRoom = roomService.FindByNumber(Convert.ToInt32(RoomNumberTextBox.Text));
-                    roomService.Delete(idRoom);
+                    roomService.Delete(1);
                     MessageBox.Show("Room " + RoomNumberTextBox.Text + " remove to hotel " + hotelName);
                 }
             }

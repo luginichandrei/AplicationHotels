@@ -21,8 +21,9 @@ namespace BusinessLayer
             return entity;
         }
 
-        public User Delete(User entity)
+        public User Delete(int id)
         {
+            var entity = new User() { Id = id };
             context.Users.Attach(entity);
             context.Entry(entity).State = EntityState.Deleted;
             context.SaveChanges();
