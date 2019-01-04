@@ -1,10 +1,8 @@
 ﻿using DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BusinessLayer
 {
@@ -24,27 +22,12 @@ namespace BusinessLayer
             return entity;
         }
 
-        public Rezervation Update(Rezervation entity)
-        {
-            var local = context.Set<Rezervation>()
-                        .Local.FirstOrDefault(entry => entry.Id.Equals(entity.Id));
-            context.Entry(local).State = EntityState.Detached;
-            context.Entry(entity).State = EntityState.Modified;
-            context.SaveChanges();
-            return entity;
-        }
-
         public Rezervation Delete(Rezervation entity)
         {
             context.Set<Rezervation>().Attach(entity);
             context.Entry(entity).State = EntityState.Deleted;
             context.SaveChanges();
             return entity;
-        }
-
-        public Rezervation GetById(int id)
-        {
-            return context.Set<Rezervation>().Find(id);
         }
 
         public virtual IQueryable<Rezervation> GetAll()
@@ -62,6 +45,19 @@ namespace BusinessLayer
             return rooms;
         }
 
+        public Rezervation GetById(int id)
+        {
+            return context.Set<Rezervation>().Find(id);
+        }
 
+        public Rezervation Update(Rezervation entity)
+        {
+            var local = context.Set<Rezervation>()
+                        .Local.FirstOrDefault(entry => entry.Id.Equals(entity.Id));
+            context.Entry(local).State = EntityState.Detached;
+            context.Entry(entity).State = EntityState.Modified;
+            context.SaveChanges();
+            return entity;
+        }
     }
 }

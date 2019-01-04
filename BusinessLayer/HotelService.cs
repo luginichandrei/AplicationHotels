@@ -1,10 +1,7 @@
 ﻿using DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BusinessLayer
 {
@@ -24,6 +21,29 @@ namespace BusinessLayer
             return entity;
         }
 
+        public Hotel Delete(Hotel entity)
+        {
+            context.Hotels.Attach(entity);
+            context.Hotels.Remove(entity);
+            context.SaveChanges();
+            return entity;
+        }
+
+        public Hotel FindByName(string name)
+        {
+            return context.Hotels.Where(x => x.Name == name).Single();
+        }
+
+        public virtual IQueryable<Hotel> GetAll()
+        {
+            return context.Hotels.AsNoTracking();
+        }
+
+        public Hotel GetById(int id)
+        {
+            return context.Hotels.Find(id);
+        }
+
         public Hotel Update(Hotel entity)
         {
             var local = context.Hotels
@@ -34,29 +54,5 @@ namespace BusinessLayer
             context.SaveChanges();
             return entity;
         }
-
-        public Hotel Delete(Hotel entity)
-        {
-            context.Hotels.Attach(entity);
-            context.Hotels.Remove(entity);
-            context.SaveChanges();
-            return entity;
-        }
-
-        public Hotel GetById(int id)
-        {
-            return context.Hotels.Find(id);
-        }
-
-        public virtual IQueryable<Hotel> GetAll()
-        {
-            return context.Hotels.AsNoTracking();
-        }
-
-        public Hotel FindByName (string name)
-        {
-            return context.Hotels.Where(x => x.Name == name).Single();
-        }
-
     }
 }
