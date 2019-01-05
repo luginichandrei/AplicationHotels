@@ -1,11 +1,13 @@
-﻿using DataAccessLayer;
+﻿using BusinessLayer.Interfaces;
+using DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BusinessLayer
 {
-    public class HotelService
+    public class HotelService : IHotelService
     {
         private ClientDbContext context;
 
@@ -35,7 +37,7 @@ namespace BusinessLayer
             return context.Hotels.Where(x => x.Name == name).Single();
         }
 
-        public virtual IQueryable<Hotel> GetAll()
+        public virtual IEnumerable<Hotel> GetAll()
         {
             return context.Hotels.AsNoTracking();
         }
@@ -47,10 +49,6 @@ namespace BusinessLayer
 
         public Hotel Update(Hotel entity)
         {
-            var local = context.Hotels
-                        .Local
-                        .FirstOrDefault(entry => entry.Id.Equals(entity.Id));
-            context.Entry(local).State = EntityState.Detached;
             context.Entry(entity).State = EntityState.Modified;
             context.SaveChanges();
             return entity;

@@ -76,7 +76,7 @@ namespace WindowsFormsAND
                     var hotelService = new HotelService(ctx);
 
                     var idHotel = hotelService.FindByName(textBoxName.Text);
-                    hotelService.Delete(idHotel);
+                    //hotelService.Delete(idHotel);
                     MessageBox.Show("Hotel " + textBoxName.Text.ToUpper() + " delete");
                 }
             }

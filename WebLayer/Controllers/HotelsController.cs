@@ -8,11 +8,12 @@ using System.Collections.Generic;
 namespace WebLayer.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class HotelsController : Controller
     {
-        private readonly HotelService service;
+        public IHotelInterface service { get; set; }
 
-        public HotelsController(HotelService service)
+        public HotelsController(IHotelInterface service)
         {
             this.service = service;
         }
@@ -33,14 +34,16 @@ namespace WebLayer.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Hotel value)
         {
+            service.Create(value);
         }
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Hotel value)
         {
+            service.Update(value);
         }
 
         // DELETE api/<controller>/5

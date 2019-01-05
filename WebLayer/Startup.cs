@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using BusinessLayer;
+using BusinessLayer.Interfaces;
+using DataAccessLayer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +28,13 @@ namespace WebLayer
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddScoped<ClientDbContext>(_ => new ClientDbContext(Configuration.GetConnectionString("HotelsDatabase")));
+
+            services.AddScoped<IHotelService, HotelService>();
+            services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IRezervationService, RezervationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,5 @@
-﻿using DataAccessLayer;
+﻿using BusinessLayer.Interfaces;
+using DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 
 namespace BusinessLayer
 {
-    public class RoomService
+    public class RoomService : IRoomService
     {
         private readonly ClientDbContext context;
 
@@ -25,9 +26,6 @@ namespace BusinessLayer
 
         public Room Update(Room entity)
         {
-            var local = context.Rooms
-                        .Local.FirstOrDefault(entry => entry.Id.Equals(entity.Id));
-            context.Entry(local).State = EntityState.Detached;
             context.Entry(entity).State = EntityState.Modified;
             context.SaveChanges();
             return entity;
@@ -52,7 +50,7 @@ namespace BusinessLayer
             return context.Rooms.Where(x => x.Number == number).Single();
         }
 
-        public virtual IQueryable<Room> GetAll()
+        public virtual IEnumerable<Room> GetAll()
         {
             return context.Rooms.AsNoTracking();
         }

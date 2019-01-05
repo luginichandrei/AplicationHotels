@@ -1,4 +1,5 @@
-﻿using DataAccessLayer;
+﻿using BusinessLayer.Interfaces;
+using DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 
 namespace BusinessLayer
 {
-    public class RezervationService
+    public class RezervationService : IRezervationService
     {
         private readonly ClientDbContext context;
 
@@ -32,7 +33,7 @@ namespace BusinessLayer
             return entity;
         }
 
-        public virtual IQueryable<Rezervation> GetAll()
+        public virtual IEnumerable<Rezervation> GetAll()
         {
             return context.Rezervations.AsNoTracking();
         }
@@ -54,9 +55,6 @@ namespace BusinessLayer
 
         public Rezervation Update(Rezervation entity)
         {
-            var local = context.Set<Rezervation>()
-                        .Local.FirstOrDefault(entry => entry.Id.Equals(entity.Id));
-            context.Entry(local).State = EntityState.Detached;
             context.Entry(entity).State = EntityState.Modified;
             context.SaveChanges();
             return entity;
