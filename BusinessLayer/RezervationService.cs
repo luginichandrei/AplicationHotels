@@ -81,27 +81,46 @@ namespace BusinessLayer
 
         public List<BookedDays> GetBookedDay(DateTime start, DateTime end, int roomId)
         {
+            PeriodWithStatus status;
+
             var result = new List<BookedDays>();
-            var rezervedDays = GetRezervedDays(start, end, roomId);
-            var sd = start;
+
+            var rezervedDays = GetRezervedDays(start, end, roomId).OrderBy(x=> x.StartDate);
+
+            var firstItem = result.First();
+
+            if (start > firstItem.StartDate && start < end)
+            {
+                status = PeriodWithStatus.ReservedPeriod;
+            }
+            else
+            {
+                status = PeriodWithStatus.FreePeriod;
+            }
+
             foreach (var rd in rezervedDays)
             {
-                result.Add(
-                new BookedDays()
+                switch (status)
                 {
-                    StartDate = sd,
-                    EndDate = rd.StartDate.AddDays(-1),
-                    Status = Enum.GetName(typeof(PeriodWithStatus), PeriodWithStatus.FreePeriod)
-                });
-
-                result.Add(
-                new BookedDays()
-                {
-                    StartDate = rd.StartDate,
-                    EndDate = rd.EndDate,
-                    Status = Enum.GetName(typeof(PeriodWithStatus), PeriodWithStatus.ReservedPeriod)
-                });
-                sd = rd.EndDate.AddDays(1);
+                    case PeriodWithStatus.FreePeriod:
+                        result.Add(
+                        new BookedDays()
+                        {
+                            StartDate = start,
+                            EndDate = rd.StartDate.AddDays(-1),
+                            Status = Enum.GetName(typeof(PeriodWithStatus), PeriodWithStatus.FreePeriod)
+                        });
+                        status = PeriodWithStatus.FreePeriod; break;
+                    case PeriodWithStatus.ReservedPeriod:
+                        result.Add(
+                            new BookedDays()
+                            {
+                                StartDate = rd.StartDate,
+                                EndDate = rd.EndDate,
+                                Status = Enum.GetName(typeof(PeriodWithStatus), PeriodWithStatus.ReservedPeriod)
+                            });
+                        status = PeriodWithStatus.ReservedPeriod; break;
+                }
             }
             return result;
         }

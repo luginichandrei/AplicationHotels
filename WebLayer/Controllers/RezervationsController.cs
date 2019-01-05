@@ -8,40 +8,39 @@ using System.Collections.Generic;
 namespace WebLayer.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    public class HotelsController : Controller
+    public class RezervationsController : Controller
     {
-        private IHotelService service { get; set; }
+        private IRezervationService service;
 
-        public HotelsController(IHotelService service)
+        public RezervationsController(IRezervationService service)
         {
             this.service = service;
         }
 
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<Hotel> Get()
+        public IEnumerable<Rezervation> Get()
         {
             return service.GetAll();
         }
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
-        public Hotel Get(int id)
+        public Rezervation Get(int id)
         {
             return service.GetById(id);
         }
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]Hotel value)
+        public void Post([FromBody]Rezervation value)
         {
             service.Create(value);
         }
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Hotel value)
+        public void Put(int id, [FromBody]Rezervation value)
         {
             service.Update(value);
         }
