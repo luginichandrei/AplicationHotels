@@ -7,5 +7,6 @@ namespace BusinessLayer.Interfaces
 {
     public interface IRezervationService : IService<Rezervation>
     {
+        List<BookedDays> GetBookedDay(DateTime start, DateTime end, int roomid);
     }
 }

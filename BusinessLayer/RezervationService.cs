@@ -79,15 +79,15 @@ namespace BusinessLayer
             return result;
         }
 
-        public List<BookedDays> GetBookedDay(DateTime start, DateTime end, int roomId)
+        public virtual List<BookedDays> GetBookedDay(DateTime start, DateTime end, int roomId)
         {
             PeriodWithStatus status;
 
             var result = new List<BookedDays>();
 
-            var rezervedDays = GetRezervedDays(start, end, roomId).OrderBy(x=> x.StartDate);
+            var rezervedDays = GetRezervedDays(start, end, roomId).OrderBy(x => x.StartDate);
 
-            var firstItem = result.First();
+            var firstItem = result.FirstOrDefault();
 
             if (start > firstItem.StartDate && start < end)
             {

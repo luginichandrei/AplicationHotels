@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using System;
 using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -15,6 +16,13 @@ namespace WebLayer.Controllers
         public RezervationsController(IRezervationService service)
         {
             this.service = service;
+        }
+
+        [HttpGet]
+        [Route("BookedDay")]
+        public IEnumerable<BookedDays> BookedDay(DateTime start, DateTime end, int roomId)
+        {
+            return service.GetBookedDay(start, end, roomId);
         }
 
         // GET: api/<controller>
