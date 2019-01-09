@@ -13,35 +13,12 @@ namespace XUnitTest
         [Fact]
         public void GetBookedDays_Test()
         {
-            var data = new List<BookedDays>
-        {
-            new BookedDays {
-                EndDate=DateTime.UtcNow,
-                StartDate= DateTime.UtcNow,
-                Status= Enum.GetName(typeof(PeriodWithStatus), PeriodWithStatus.FreePeriod)
-            },
-            new BookedDays {
-                EndDate=DateTime.UtcNow,
-                StartDate= DateTime.UtcNow,
-                Status= Enum.GetName(typeof(PeriodWithStatus), PeriodWithStatus.ReservedPeriod)
-            },
-            new BookedDays {
-                EndDate=DateTime.UtcNow,
-                StartDate= DateTime.UtcNow,
-                Status= Enum.GetName(typeof(PeriodWithStatus), PeriodWithStatus.FreePeriod)
-            },
-            new BookedDays {
-                EndDate=DateTime.UtcNow,
-                StartDate= DateTime.UtcNow,
-                Status= Enum.GetName(typeof(PeriodWithStatus), PeriodWithStatus.ReservedPeriod)
-            },
-        };
-
-            var mockRezervService = new Mock<IRezervationService>();
-            mockRezervService.Setup(mr => mr.GetBookedDay(It.IsAny<DateTime>(), It.IsAny<DateTime>(), It.IsAny<int>())).Returns(data);
-
-            var bookedDays = mockRezervService.Object;
-            Assert.Equal(1, 1);
+           var reservedStub = new List<RezervedDays>(){
+                new RezervedDays(){ StartDate = new DateTime(2020,10,13), EndDate = new DateTime(2020,10,17) }
+            };
+            var mockRezervService = new Mock<RezervationService>(MockBehavior.Default, null) { CallBase = true };
+            mockRezervService.Setup(x => x.GetRezervedDays(It.IsAny<DateTime>(), It.IsAny<DateTime>(), It.IsAny<int>())).Returns(reservedStub);
+            var bookedDays = mockRezervService.Object.GetBookedDay(new DateTime(2020,10,10), new DateTime(2020, 10, 20), 10);
         }
     }
 }

@@ -30,7 +30,6 @@ namespace WebLayer
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddScoped<ClientDbContext>(_ => new ClientDbContext(Configuration.GetConnectionString("HotelsDatabase")));
-
             services.AddScoped<IHotelService, HotelService>();
             services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IUserService, UserService>();

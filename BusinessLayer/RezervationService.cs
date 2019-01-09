@@ -10,7 +10,7 @@ namespace BusinessLayer
 {
     public class RezervationService : IRezervationService
     {
-        private readonly ClientDbContext context;
+        public virtual ClientDbContext context { get; private set; }
 
         public RezervationService(ClientDbContext context)
         {
@@ -60,7 +60,7 @@ namespace BusinessLayer
             return entity;
         }
 
-        public List<RezervedDays> GetRezervedDays(DateTime start, DateTime end, int roomId)
+        public virtual List<RezervedDays> GetRezervedDays(DateTime start, DateTime end, int roomId)
         {
             var result = new List<RezervedDays>();
 
@@ -87,7 +87,7 @@ namespace BusinessLayer
 
             var rezervedDays = GetRezervedDays(start, end, roomId).OrderBy(x => x.StartDate);
 
-            var firstItem = result.FirstOrDefault();
+            var firstItem = rezervedDays.FirstOrDefault();
 
             if (start > firstItem.StartDate && start < end)
             {
@@ -110,7 +110,8 @@ namespace BusinessLayer
                             EndDate = rd.StartDate.AddDays(-1),
                             Status = Enum.GetName(typeof(PeriodWithStatus), PeriodWithStatus.FreePeriod)
                         });
-                        status = PeriodWithStatus.FreePeriod; break;
+                        status = PeriodWithStatus.FreePeriod;
+                        break;
                     case PeriodWithStatus.ReservedPeriod:
                         result.Add(
                             new BookedDays()
@@ -119,7 +120,8 @@ namespace BusinessLayer
                                 EndDate = rd.EndDate,
                                 Status = Enum.GetName(typeof(PeriodWithStatus), PeriodWithStatus.ReservedPeriod)
                             });
-                        status = PeriodWithStatus.ReservedPeriod; break;
+                        status = PeriodWithStatus.ReservedPeriod;
+                        break;
                 }
             }
             return result;

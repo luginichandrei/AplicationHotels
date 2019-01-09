@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -11,17 +12,20 @@ namespace WebLayer.Controllers
     [Route("api/[controller]")]
     public class RezervationsController : Controller
     {
+        private readonly ILogger<RezervationsController> _logger;
         private IRezervationService service;
 
-        public RezervationsController(IRezervationService service)
+        public RezervationsController(IRezervationService service, ILogger<RezervationsController> logger)
         {
             this.service = service;
+            _logger = logger;
         }
 
         [HttpGet]
         [Route("BookedDay")]
         public IEnumerable<BookedDays> BookedDay(DateTime start, DateTime end, int roomId)
         {
+            _logger.LogInformation("Index page says hello");
             return service.GetBookedDay(start, end, roomId);
         }
 

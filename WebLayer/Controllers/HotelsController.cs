@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Models;
 using System.Collections.Generic;
 
@@ -11,18 +12,22 @@ namespace WebLayer.Controllers
     [ApiController]
     public class HotelsController : Controller
     {
-        private IHotelService service { get; set; }
+        private IHotelService service;
+        private readonly ILogger<HotelsController> _logger;
 
-        public HotelsController(IHotelService service)
+        public HotelsController(IHotelService service, ILogger<HotelsController> logger)
         {
             this.service = service;
+            _logger = logger;
         }
 
         // GET: api/<controller>
         [HttpGet]
         public IEnumerable<Hotel> Get()
         {
-            return service.GetAll();
+            var hotels = service.GetAll();
+            _logger.LogInformation("Index page says hello");
+            return hotels;
         }
 
         // GET api/<controller>/5

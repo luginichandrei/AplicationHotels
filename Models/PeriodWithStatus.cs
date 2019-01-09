@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Models
 {
-    public  enum PeriodWithStatus
+    public enum PeriodWithStatus
     {
         [Description("Free Period")]
         FreePeriod,
