@@ -4,6 +4,9 @@ using Microsoft.Extensions.Logging;
 using Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,10 +26,24 @@ namespace WebLayer.Controllers
 
         [HttpGet]
         [Route("BookedDay")]
-        public IEnumerable<BookedDays> BookedDay(DateTime start, DateTime end, int roomId)
+        [ProducesResponseType(200,  Type=typeof(List<BookedDays>))]
+        public IActionResult BookedDays(DateTime start, DateTime end, int roomId)
         {
-            _logger.LogInformation("Index page says hello");
-            return service.GetBookedDay(start, end, roomId);
+            try
+            {
+                _logger.LogInformation("Fetching all the BookedDays from the storage");
+
+                var bookedDays = service.GetBookedDays(start, end, roomId);
+
+                _logger.LogInformation($"Returning {bookedDays.Count()} BookedDays.");
+
+                return Ok(bookedDays);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, "");
+            }
         }
 
         // GET: api/<controller>

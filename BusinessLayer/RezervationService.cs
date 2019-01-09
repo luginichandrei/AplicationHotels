@@ -79,7 +79,7 @@ namespace BusinessLayer
             return result;
         }
 
-        public virtual List<BookedDays> GetBookedDay(DateTime start, DateTime end, int roomId)
+        public virtual List<BookedDays> GetBookedDays(DateTime start, DateTime end, int roomId)
         {
             PeriodWithStatus status;
 

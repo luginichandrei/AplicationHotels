@@ -18,7 +18,7 @@ namespace XUnitTest
             };
             var mockRezervService = new Mock<RezervationService>(MockBehavior.Default, null) { CallBase = true };
             mockRezervService.Setup(x => x.GetRezervedDays(It.IsAny<DateTime>(), It.IsAny<DateTime>(), It.IsAny<int>())).Returns(reservedStub);
-            var bookedDays = mockRezervService.Object.GetBookedDay(new DateTime(2020,10,10), new DateTime(2020, 10, 20), 10);
+            var bookedDays = mockRezervService.Object.GetBookedDays(new DateTime(2020,10,10), new DateTime(2020, 10, 20), 10);
         }
     }
 }

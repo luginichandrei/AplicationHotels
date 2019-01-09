@@ -26,7 +26,7 @@ namespace WebLayer.Controllers
         public IEnumerable<Hotel> Get()
         {
             var hotels = service.GetAll();
-            _logger.LogInformation("Index page says hello");
+            _logger.LogInformation("Run method Get");
             return hotels;
         }
 
