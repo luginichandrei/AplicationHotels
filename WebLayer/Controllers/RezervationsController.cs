@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,7 +25,7 @@ namespace WebLayer.Controllers
 
         [HttpGet]
         [Route("BookedDay")]
-        [ProducesResponseType(200,  Type=typeof(List<BookedDays>))]
+        [ProducesResponseType(200, Type = typeof(List<BookedDays>))]
         public IActionResult BookedDays(DateTime start, DateTime end, int roomId)
         {
             try
@@ -48,38 +47,37 @@ namespace WebLayer.Controllers
 
         // GET: api/<controller>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(int? id)
         {
-            var rezervation = service.GetAll();
-            return Ok(rezervation);
-        }
-
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public Rezervation Get(int id)
-        {
-            return service.GetById(id);
+            if (id.HasValue)
+            {
+                return Ok(service.GetById(id.Value));
+            }
+            else
+            {
+                return Ok(service.GetAll());
+            }
         }
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]Rezervation value)
+        public IActionResult Create([FromBody]Rezervation value)
         {
-            service.Create(value);
+            return Ok(service.Create(value));
         }
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Rezervation value)
+        public IActionResult Update(int id, [FromBody]Rezervation value)
         {
-            service.Update(value);
+            return Ok(service.Update(value));
         }
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-            service.Delete(id);
+            return Ok(service.Delete(id));
         }
     }
 }

@@ -21,42 +21,38 @@ namespace WebLayer.Controllers
             _logger = logger;
         }
 
-        // GET: api/<controller>
-        [HttpGet]
-        public IActionResult Get()
-        {
-            var hotels = service.GetAll();
-            _logger.LogInformation("Run method Get");
-            return Ok(hotels);
-        }
-
         // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        [HttpGet("{id?}")]
+        public IActionResult Get(int? id)
         {
-            var hotel= service.GetById(id);
-            return Ok(hotel);
+            if (id.HasValue)
+            {
+                return Ok(service.GetById(id.Value));
+            }else
+            {
+                return Ok(service.GetAll());
+            }
         }
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]Hotel value)
+        public IActionResult Create([FromBody]Hotel value)
         {
-            service.Create(value);
+            return Ok(service.Create(value));
         }
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Hotel value)
+        public IActionResult Update(int id, [FromBody]Hotel value)
         {
-            service.Update(value);
+            return Ok(service.Update(value));
         }
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-            service.Delete(id);
+            return Ok(service.Delete(id));
         }
     }
 }

@@ -12,6 +12,7 @@ using NJsonSchema;
 using NSwag.AspNetCore;
 using Microsoft.Extensions.PlatformAbstractions;
 using System.IO;
+using System.Reflection;
 
 namespace WebLayer
 {
@@ -30,6 +31,7 @@ namespace WebLayer
             services.AddMvc(o => { o.Filters.Add<GlobalExceptionFilter>(); });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerDocument();
+
             //services.AddSwaggerGen(c =>
             //            {
             //                c.EnableAnnotations();
@@ -64,11 +66,13 @@ namespace WebLayer
             }
             app.UseStatusCodePagesWithReExecute("/error/{0}");
             app.UseHttpsRedirection();
-
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
-            app.UseStaticFiles();
             app.UseSwagger();
-            app.UseSwaggerUi3();
+            app.UseStaticFiles();
+            app.UseSwaggerUi3(typeof(Startup).GetTypeInfo().Assembly, settings =>
+            {
+                settings.GeneratorSettings.DefaultPropertyNameHandling =
+                                  PropertyNameHandling.CamelCase;
+            });
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
             //app.UseSwaggerUI(c =>

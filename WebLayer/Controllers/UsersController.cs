@@ -22,39 +22,39 @@ namespace WebLayer.Controllers
 
         // GET: api/<controller>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(int? id)
         {
-            var users = service.GetAll();
-            return Ok(users);
-        }
-
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
-        {
-            var user = service.GetById(id);
-            return Ok(user);
+            if (id.HasValue)
+            {
+                return Ok(service.GetById(id.Value));
+            }else
+            {
+                return Ok(service.GetAll());
+            }
         }
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]User value)
+        public IActionResult Create([FromBody]User value)
         {
-            service.Create(value);
+            var userAdd = service.Create(value);
+            return Ok(userAdd);
         }
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]User value)
+        public IActionResult Update(int id, [FromBody]User value)
         {
-            service.Update(value);
+            var userUpdate = service.Update(value);
+            return Ok(userUpdate);
         }
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-            service.Delete(id);
+            var userDelete = service.Delete(id);
+            return Ok(userDelete);
         }
     }
 }
