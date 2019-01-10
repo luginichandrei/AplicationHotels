@@ -22,16 +22,18 @@ namespace WebLayer.Controllers
 
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<User> Get()
+        public IActionResult Get()
         {
-            return service.GetAll();
+            var users = service.GetAll();
+            return Ok(users);
         }
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
-        public User Get(int id)
+        public IActionResult Get(int id)
         {
-            return service.GetById(id);
+            var user = service.GetById(id);
+            return Ok(user);
         }
 
         // POST api/<controller>

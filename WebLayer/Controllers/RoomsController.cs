@@ -19,16 +19,18 @@ namespace WebLayer.Controllers
 
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<Room> Get()
+        public IActionResult Get()
         {
-            return service.GetAll();
+            var rooms = service.GetAll();
+            return Ok(rooms);
         }
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
-        public Room Get(int id)
+        public IActionResult Get(int id)
         {
-            return service.GetById(id);
+            var room = service.GetById(id);
+            return Ok(room);
         }
 
         // POST api/<controller>

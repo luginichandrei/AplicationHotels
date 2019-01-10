@@ -21,9 +21,10 @@ namespace DataAccessLayer
         public DbSet<User> Users { get; set; }
         public DbSet<Rezervation> Rezervations { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(connectionString);
-        }
+    // Use for  contextResolver
+    //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //    {
+    //        optionsBuilder.UseSqlServer(connectionString);
+    //    }
     }
 }

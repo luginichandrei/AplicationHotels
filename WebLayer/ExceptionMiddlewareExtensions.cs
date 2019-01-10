@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
-using Models;
-using System.Net;
-
-namespace WebLayer
+﻿namespace WebLayer
 {
     //public static class ExceptionMiddlewareExtensions
     //{

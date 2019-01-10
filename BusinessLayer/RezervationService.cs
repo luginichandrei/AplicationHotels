@@ -110,7 +110,7 @@ namespace BusinessLayer
                             EndDate = rd.StartDate.AddDays(-1),
                             Status = Enum.GetName(typeof(PeriodWithStatus), PeriodWithStatus.FreePeriod)
                         });
-                        status = PeriodWithStatus.FreePeriod;
+                        status = PeriodWithStatus.ReservedPeriod;
                         break;
                     case PeriodWithStatus.ReservedPeriod:
                         result.Add(
@@ -120,7 +120,7 @@ namespace BusinessLayer
                                 EndDate = rd.EndDate,
                                 Status = Enum.GetName(typeof(PeriodWithStatus), PeriodWithStatus.ReservedPeriod)
                             });
-                        status = PeriodWithStatus.ReservedPeriod;
+                        status = PeriodWithStatus.FreePeriod;
                         break;
                 }
             }

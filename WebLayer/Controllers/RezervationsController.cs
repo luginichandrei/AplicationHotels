@@ -48,9 +48,10 @@ namespace WebLayer.Controllers
 
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<Rezervation> Get()
+        public IActionResult Get()
         {
-            return service.GetAll();
+            var rezervation = service.GetAll();
+            return Ok(rezervation);
         }
 
         // GET api/<controller>/5

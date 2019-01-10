@@ -7,8 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Swashbuckle.AspNetCore.Swagger;
 using WebLayer.ExceptionFilter;
+using NJsonSchema;
+using NSwag.AspNetCore;
+using Microsoft.Extensions.PlatformAbstractions;
+using System.IO;
 
 namespace WebLayer
 {
@@ -24,13 +27,18 @@ namespace WebLayer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info { Title = "#And API", Version = "v1" });
-            });
             services.AddMvc(o => { o.Filters.Add<GlobalExceptionFilter>(); });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSwaggerDocument();
+            //services.AddSwaggerGen(c =>
+            //            {
+            //                c.EnableAnnotations();
+            //                c.SwaggerDoc("v1", new Info { Title = "#And API", Version = "v1" });
 
+            //                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+            //                var xmlPath = Path.Combine(basePath, "Cyberkruz.Autorest.Web.xml");
+            //                c.IncludeXmlComments(xmlPath);
+            //            });
             //services.AddScoped<ClientDbContext>(_ => new ClientDbContext(Configuration.GetConnectionString("HotelsDatabase")));
             services.AddDbContext<ClientDbContext>(options =>
 
@@ -56,17 +64,19 @@ namespace WebLayer
             }
             app.UseStatusCodePagesWithReExecute("/error/{0}");
             app.UseHttpsRedirection();
-            app.UseMvc();
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
-            app.UseSwagger();
 
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseStaticFiles();
+            app.UseSwagger();
+            app.UseSwaggerUi3();
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                c.RoutePrefix = string.Empty;
-            });
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            //    c.RoutePrefix = string.Empty;
+            //});
+            app.UseMvc();
         }
     }
 }
