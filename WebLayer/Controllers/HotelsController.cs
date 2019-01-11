@@ -22,12 +22,12 @@ namespace WebLayer.Controllers
         }
 
         // GET api/<controller>/5
-        [HttpGet("{id?}")]
-        public IActionResult Get(int? id)
+        [HttpGet("{id}")]
+        public ActionResult<IEnumerable<Hotel>> Get(int? id)
         {
             if (id.HasValue)
             {
-                return Ok(service.GetById(id.Value));
+                return Ok(new List<Hotel>() { service.GetById(id.Value) });
             }else
             {
                 return Ok(service.GetAll());

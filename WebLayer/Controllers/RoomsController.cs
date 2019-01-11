@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,16 +18,20 @@ namespace WebLayer.Controllers
         }
 
         // GET: api/<controller>
-        [HttpGet]
-        public IActionResult Get(int? id)
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(IEnumerable<Room>), 200)]
+        public IActionResult Get(int id)
         {
-            if (id.HasValue)
-            {
-                return Ok(service.GetById(id.Value));
-            }else
-            {
-                return Ok(service.GetAll());
-            }
+            return Ok(new List<Room>() { service.GetById(id) });
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<Room>), 200)]
+        public IActionResult Get()
+        {
+            var rooms = new List<Room>();
+            rooms.AddRange(service.GetAll());
+            return Ok(rooms);
         }
 
         // POST api/<controller>
