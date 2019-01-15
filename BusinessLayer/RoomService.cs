@@ -24,13 +24,6 @@ namespace BusinessLayer
             return entity;
         }
 
-        public Room Update(Room entity)
-        {
-            context.Entry(entity).State = EntityState.Modified;
-            context.SaveChanges();
-            return entity;
-        }
-
         public Room Delete(int id)
         {
             var entity = new Room() { Id = id };
@@ -40,14 +33,14 @@ namespace BusinessLayer
             return entity;
         }
 
-        public Room GetById(int id)
+        public List<Room> FindByHotelId(int hotelId)
         {
-            return context.Rooms.Find(id);
+            return context.Rooms.Where(x => x.HotelId == hotelId).ToList();
         }
 
-        public Room FindByNumber(int number)
+        public Room FindByNumber(int number, int hotelId)
         {
-            return context.Rooms.Where(x => x.Number == number).Single();
+            return context.Rooms.Where(x => x.Number == number && x.HotelId == hotelId).FirstOrDefault();
         }
 
         public virtual IEnumerable<Room> GetAll()
@@ -55,17 +48,28 @@ namespace BusinessLayer
             return context.Rooms.AsNoTracking();
         }
 
-        public List<RoomRating> GetRoomsRating(int hotelId)
+        public Room GetById(int id)
         {
-            var result = new List<RoomRating>();
-            var rr = context.Hotels.Where(x => x.Id == hotelId)
-                .Include(x => x.Rooms.Where(r => r.HotelId == hotelId));
+            return context.Rooms.Find(id);
+        }
+
+        public virtual IEnumerable<RoomRating> GetHotelRooms(int hotelId)
+        {
+            var result = context.Hotels.Where(x => x.Id == hotelId)
+                    .Join(context.Rooms, p => p.Id, pc => pc.HotelId, (p, pc) => new { p, pc })
+                    .Join(context.Rezervations, ppc => ppc.pc.Id, c => c.RoomId, (ppc, c) => new RoomRating
+                    {
+                        HotelName = ppc.p.Name,
+                        RoomNumber = ppc.pc.Number,
+                        Days = c.Checkin
+                    })
+                    .ToList();
             return result;
         }
 
         public virtual List<TopRoom> GetRoomRating(DateTime startTime, DateTime endTime, int hotelId)
         {
-            var rooms = GetRoomsRating(hotelId);
+            var rooms = GetHotelRooms(hotelId);
 
             var result = new List<TopRoom>();
             foreach (var ms in rooms)
@@ -78,6 +82,13 @@ namespace BusinessLayer
                 });
             }
             return result.GroupBy(x => x.RoomNumber).Select(y => y.First()).OrderByDescending(x => x.CountRezerve).Take(10).ToList();
+        }
+
+        public Room Update(Room entity)
+        {
+            context.Entry(entity).State = EntityState.Modified;
+            context.SaveChanges();
+            return entity;
         }
     }
 }

@@ -12,8 +12,8 @@ namespace WebLayer.Controllers
     [ApiController]
     public class HotelsController : Controller
     {
-        private IHotelService service;
         private readonly ILogger<HotelsController> _logger;
+        private IHotelService service;
 
         public HotelsController(IHotelService service, ILogger<HotelsController> logger)
         {
@@ -21,38 +21,48 @@ namespace WebLayer.Controllers
             _logger = logger;
         }
 
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public ActionResult<IEnumerable<Hotel>> Get(int? id)
-        {
-            if (id.HasValue)
-            {
-                return Ok(new List<Hotel>() { service.GetById(id.Value) });
-            }else
-            {
-                return Ok(service.GetAll());
-            }
-        }
-
-        // POST api/<controller>
         [HttpPost]
+        [ProducesResponseType(typeof(IEnumerable<Hotel>), 200)]
         public IActionResult Create([FromBody]Hotel value)
         {
-            return Ok(service.Create(value));
+            return Ok(new List<Hotel>() { service.Create(value) });
         }
 
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody]Hotel value)
-        {
-            return Ok(service.Update(value));
-        }
-
-        // DELETE api/<controller>/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(IEnumerable<Hotel>), 200)]
         public IActionResult Delete(int id)
         {
-            return Ok(service.Delete(id));
+            return Ok(new List<Hotel>() { service.Delete(id) });
+        }
+
+        [HttpGet("{id:int}")]
+        [ProducesResponseType(typeof(IEnumerable<Hotel>), 200)]
+        public IActionResult Get(int id)
+        {
+            return Ok(new List<Hotel>() { service.GetById(id) });
+        }
+
+        [HttpGet("{name}")]
+        [ProducesResponseType(typeof(IEnumerable<Hotel>), 200)]
+        public IActionResult Name(string name)
+        {
+            return Ok(new List<Hotel>() { service.FindByName(name) });
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<Hotel>), 200)]
+        public IActionResult Get()
+        {
+            var hotels = new List<Hotel>();
+            hotels.AddRange(service.GetAll());
+            return Ok(hotels);
+        }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(typeof(IEnumerable<Hotel>), 200)]
+        public IActionResult Update(int id, [FromBody]Hotel value)
+        {
+            return Ok(new List<Hotel>() { service.Update(value) });
         }
     }
 }

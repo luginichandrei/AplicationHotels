@@ -7,11 +7,15 @@ namespace DataAccessLayer
     {
         private readonly string connectionString;
 
-        public ClientDbContext() : base() { }
+        public ClientDbContext() : base()
+        {
+        }
 
-        public ClientDbContext(DbContextOptions<ClientDbContext> options) : base(options) { }
+        public ClientDbContext(DbContextOptions<ClientDbContext> options) : base(options)
+        {
+        }
 
-        public ClientDbContext(string connectionString) 
+        public ClientDbContext(string connectionString)
         {
             this.connectionString = connectionString;
         }
@@ -21,10 +25,10 @@ namespace DataAccessLayer
         public DbSet<User> Users { get; set; }
         public DbSet<Rezervation> Rezervations { get; set; }
 
-    // Use for  contextResolver
-    //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //    {
-    //        optionsBuilder.UseSqlServer(connectionString);
-    //    }
+        // Use for  contextResolver
+        //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //    {
+        //        optionsBuilder.UseSqlServer(connectionString);
+        //    }
     }
 }

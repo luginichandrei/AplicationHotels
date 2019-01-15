@@ -34,7 +34,7 @@ namespace BusinessLayer
 
         public Hotel FindByName(string name)
         {
-            return context.Hotels.Where(x => x.Name == name).Single();
+            return context.Hotels.Where(x => x.Name == name).FirstOrDefault();
         }
 
         public virtual IEnumerable<Hotel> GetAll()

@@ -23,8 +23,7 @@ namespace WebLayer.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        [Route("BookedDay")]
+        [HttpGet("{start}/{end}/{roomId}")]
         [ProducesResponseType(200, Type = typeof(List<BookedDays>))]
         public IActionResult BookedDays(DateTime start, DateTime end, int roomId)
         {
@@ -45,39 +44,41 @@ namespace WebLayer.Controllers
             }
         }
 
-        // GET: api/<controller>
-        [HttpGet]
-        public IActionResult Get(int? id)
-        {
-            if (id.HasValue)
-            {
-                return Ok(service.GetById(id.Value));
-            }
-            else
-            {
-                return Ok(service.GetAll());
-            }
-        }
-
-        // POST api/<controller>
         [HttpPost]
+        [ProducesResponseType(typeof(IEnumerable<Rezervation>), 200)]
         public IActionResult Create([FromBody]Rezervation value)
         {
-            return Ok(service.Create(value));
+            return Ok(new List<Rezervation>() { service.Create(value) });
         }
 
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody]Rezervation value)
-        {
-            return Ok(service.Update(value));
-        }
-
-        // DELETE api/<controller>/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(IEnumerable<Rezervation>), 200)]
         public IActionResult Delete(int id)
         {
-            return Ok(service.Delete(id));
+            return Ok(new List<Rezervation>() { service.Delete(id) });
+        }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(IEnumerable<Rezervation>), 200)]
+        public IActionResult Get(int id)
+        {
+            return Ok(new List<Rezervation>() { service.GetById(id) });
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<Rezervation>), 200)]
+        public IActionResult Get()
+        {
+            var rezervations = new List<Rezervation>();
+            rezervations.AddRange(service.GetAll());
+            return Ok(rezervations);
+        }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(typeof(IEnumerable<Rezervation>), 200)]
+        public IActionResult Update(int id, [FromBody]Rezervation value)
+        {
+            return Ok(new List<Rezervation>() { service.Update(value) });
         }
     }
 }

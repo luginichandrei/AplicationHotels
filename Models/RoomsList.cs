@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Models
+﻿namespace Models
 {
     public class RoomsList
     {
@@ -12,6 +8,5 @@ namespace Models
         public string Capability { get; set; }
         public string ReserveTo { get; set; }
         public string UserName { get; set; }
-
     }
 }

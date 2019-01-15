@@ -5,7 +5,7 @@ namespace WebLayer.ExceptionFilter
 {
     public class GlobalExceptionFilter : IExceptionFilter
     {
-        ILogger<GlobalExceptionFilter> logger = null;
+        private ILogger<GlobalExceptionFilter> logger = null;
 
         public GlobalExceptionFilter(ILogger<GlobalExceptionFilter> exceptionLogger)
         {

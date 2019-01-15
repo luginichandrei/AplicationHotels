@@ -6,7 +6,6 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace XUnitTest
@@ -52,14 +51,14 @@ namespace XUnitTest
         {
             var data = new Room
             {
-                Id=1,
+                Id = 1,
                 Number = 100,
                 ComfortLevel = 1,
                 Capability = 3,
-                Price=111,
-                Created=DateTime.UtcNow,
-                Modified= DateTime.UtcNow,
-                HotelId=1
+                Price = 111,
+                Created = DateTime.UtcNow,
+                Modified = DateTime.UtcNow,
+                HotelId = 1
             };
 
             var mockSet = new Mock<DbSet<Room>>();
@@ -72,6 +71,32 @@ namespace XUnitTest
 
             mockSet.Verify(m => m.Add(It.IsAny<Room>()), Times.Once());
             mockContext.Verify(m => m.SaveChanges(), Times.Once);
+        }
+
+        [Fact]
+        public void GetRoomRating()
+        {
+            var roomRatingStub = new List<RoomRating>()
+            {
+                new RoomRating(){ RoomNumber= 100, HotelName= "HotHotel", Days=new DateTime() },
+                new RoomRating(){ RoomNumber= 100, HotelName= "HotHotel", Days=new DateTime() },
+                new RoomRating(){ RoomNumber= 100, HotelName= "HotHotel", Days=new DateTime() },
+                new RoomRating(){ RoomNumber= 101, HotelName= "HotHotel", Days=new DateTime() },
+                new RoomRating(){ RoomNumber= 101, HotelName= "HotHotel", Days=new DateTime() },
+                new RoomRating(){ RoomNumber= 102, HotelName= "HotHotel", Days=new DateTime() }
+            };
+            var mockRoomService = new Mock<RoomService>(MockBehavior.Default, null) { CallBase = true };
+            mockRoomService.Setup(x => x.GetHotelRooms(It.IsAny<int>())).Returns(roomRatingStub);
+            var roomsRatingResult = mockRoomService.Object.GetRoomRating(new DateTime(), new DateTime(), 10);
+
+            var trueData = new List<TopRoom>()
+            {
+                new TopRoom(){HotelName="HotHotel", RoomNumber=100, CountRezerve=3},
+                new TopRoom(){HotelName="HotHotel", RoomNumber=101, CountRezerve=2},
+                new TopRoom(){HotelName="HotHotel", RoomNumber=102, CountRezerve=1},
+            };
+
+            Assert.Equal(trueData.First(), roomsRatingResult.First());
         }
     }
 }

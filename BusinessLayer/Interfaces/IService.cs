@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace BusinessLayer.Interfaces
 {
@@ -8,7 +6,7 @@ namespace BusinessLayer.Interfaces
     {
         T Create(T entity);
 
-         IEnumerable<T> GetAll();
+        IEnumerable<T> GetAll();
 
         T GetById(int id);
 

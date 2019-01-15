@@ -7,12 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebLayer.ExceptionFilter;
 using NJsonSchema;
 using NSwag.AspNetCore;
-using Microsoft.Extensions.PlatformAbstractions;
-using System.IO;
 using System.Reflection;
+using WebLayer.ExceptionFilter;
 
 namespace WebLayer
 {
@@ -30,6 +28,7 @@ namespace WebLayer
         {
             services.AddMvc(o => { o.Filters.Add<GlobalExceptionFilter>(); });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddRouting();
             services.AddSwaggerDocument();
 
             //services.AddSwaggerGen(c =>
@@ -81,6 +80,10 @@ namespace WebLayer
             //    c.RoutePrefix = string.Empty;
             //});
             app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }

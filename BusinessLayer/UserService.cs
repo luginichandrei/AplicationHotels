@@ -23,6 +23,11 @@ namespace BusinessLayer
             return entity;
         }
 
+        public User FindByName(string name)
+        {
+            return context.Users.Where(x => x.Name == name).FirstOrDefault();
+        }
+
         public User Delete(int id)
         {
             var entity = new User() { Id = id };

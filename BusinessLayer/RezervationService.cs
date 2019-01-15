@@ -83,14 +83,14 @@ namespace BusinessLayer
         {
             var result = new List<BookedDays>();
 
-            var rezervedDays = GetRezervedDays(start, end, roomId).OrderBy(x => x.StartDate).OrderBy(x=>x.StartDate);
+            var rezervedDays = GetRezervedDays(start, end, roomId).OrderBy(x => x.StartDate).OrderBy(x => x.StartDate).ToList();
 
             foreach (var rd in rezervedDays)
             {
                 result.Add(
                     new BookedDays()
                     {
-                        StartDate =start,
+                        StartDate = start,
                         EndDate = rd.StartDate.AddDays(-1),
                         Status = PeriodWithStatus.FreePeriod
                     });

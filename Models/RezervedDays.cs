@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Models
 {
@@ -8,6 +6,5 @@ namespace Models
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-
     }
 }
