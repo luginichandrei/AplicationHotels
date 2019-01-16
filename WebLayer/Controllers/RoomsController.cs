@@ -1,8 +1,11 @@
 ﻿using BusinessLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,10 +15,12 @@ namespace WebLayer.Controllers
     public class RoomsController : Controller
     {
         private IRoomService service;
+        private readonly ILogger<RoomsController> _logger;
 
-        public RoomsController(IRoomService service)
+        public RoomsController(IRoomService service, ILogger<RoomsController> logger)
         {
             this.service = service;
+            _logger = logger;
         }
 
         [HttpPost]
@@ -69,9 +74,22 @@ namespace WebLayer.Controllers
         [ProducesResponseType(typeof(IEnumerable<TopRoom>), 200)]
         public IActionResult RoomsRating(DateTime start, DateTime end, int hotelId)
         {
-            var rooms = new List<TopRoom>();
-            rooms.AddRange(service.GetRoomRating(start, end, hotelId));
-            return Ok(rooms);
+            try
+            {
+                var rooms = new List<TopRoom>();
+
+                _logger.LogInformation("Fetching all the RoomsRating from the storage");
+
+                rooms.AddRange(service.GetRoomRating(start, end, hotelId));
+
+                _logger.LogInformation($"Returning {rooms.Count()} BookedDays.");
+                return Ok(rooms);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong: {ex}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, "");
+            }
         }
 
         [HttpPut("{id}")]

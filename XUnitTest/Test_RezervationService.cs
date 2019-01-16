@@ -3,6 +3,7 @@ using Models;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace XUnitTest
@@ -26,7 +27,9 @@ namespace XUnitTest
                 new BookedDays(){StartDate = new DateTime(2020,10,18), EndDate = new DateTime(2020,10,20), Status=PeriodWithStatus.FreePeriod}
             };
 
-            Assert.Equal(bookedDays, data);
+            Assert.Equal(bookedDays.First().StartDate, data.First().StartDate);
+            Assert.Equal(bookedDays.First().EndDate, data.First().EndDate);
+            Assert.Equal(bookedDays.First().Status, data.First().Status);
         }
     }
 }

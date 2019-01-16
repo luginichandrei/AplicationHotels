@@ -96,7 +96,8 @@ namespace XUnitTest
                 new TopRoom(){HotelName="HotHotel", RoomNumber=102, CountRezerve=1},
             };
 
-            Assert.Equal(trueData.First(), roomsRatingResult.First());
+            Assert.Equal(trueData.First().CountRezerve, roomsRatingResult.First().CountRezerve);
+            Assert.Equal(trueData.Last().CountRezerve, roomsRatingResult.Last().CountRezerve);
         }
     }
 }

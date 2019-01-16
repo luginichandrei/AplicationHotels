@@ -64,5 +64,12 @@ namespace WebLayer.Controllers
         {
             return Ok(new List<Hotel>() { service.Update(value) });
         }
+
+        [HttpGet]
+        [Route("Index")]
+        public IActionResult Index()
+        {
+            return View("~/Views/Index.cshtml");
+        }
     }
 }

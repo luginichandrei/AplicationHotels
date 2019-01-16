@@ -1,9 +1,9 @@
 ﻿using BusinessLayer.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using System.Collections.Generic;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace WebLayer.Controllers
 {
@@ -15,6 +15,18 @@ namespace WebLayer.Controllers
         public UsersController(IUserService service)
         {
             this.service = service;
+        }
+
+        [AllowAnonymous]
+        [HttpPost("authenticate")]
+        public IActionResult Authenticate([FromBody]User userParam)
+        {
+            var user = service.Authenticate("Steve", " ");
+
+            if (user == null)
+                return BadRequest(new { message = "Username or password is incorrect" });
+
+            return Ok(user);
         }
 
         [HttpDelete("{id}")]
@@ -31,6 +43,7 @@ namespace WebLayer.Controllers
             return Ok(new List<User>() { service.GetById(id) });
         }
 
+        [Authorize]
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<User>), 200)]
         public IActionResult Get()
