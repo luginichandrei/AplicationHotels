@@ -67,6 +67,33 @@ namespace BusinessLayer
             return result;
         }
 
+        public virtual IEnumerable<RoomsWithRezervation> GetHotelRoomsWithRezervation(int hotelId)
+        {
+            var result = context.Rooms.Where(h=>h.HotelId==hotelId)
+                .Include(x=>x.Hotel)
+                .Include(x => x.Rezervation).DefaultIfEmpty()
+                .AsNoTracking()
+                .ToList();
+            var rooms = new List<RoomsWithRezervation>();
+            foreach(var r in result)
+            {
+                rooms.Add(new RoomsWithRezervation() {
+
+                    HotelId = r.HotelId,
+                    HotelName= r.Hotel.Name,
+                    Number= r.Number,
+                    Price = r.Price,
+                    ComfortLevel = r.ComfortLevel,
+                    Capability = r.Capability,
+                    Checkin = r.Rezervation.Select(x=>x.Checkout).FirstOrDefault(),
+                    Checkout= r.Rezervation.Select(x=>x.Checkout).FirstOrDefault()
+
+                });                   
+                
+            }
+            return rooms.OrderBy(r=>r.Number);
+        }
+
         public virtual List<TopRoom> GetRoomRating(DateTime startTime, DateTime endTime, int hotelId)
         {
             var rooms = GetHotelRooms(hotelId);

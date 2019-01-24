@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Models;
@@ -11,6 +12,7 @@ using System.Net;
 
 namespace WebLayer.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class RoomsController : Controller
     {
@@ -58,6 +60,16 @@ namespace WebLayer.Controllers
         public IActionResult GetByRoomNumber(int roomNumber, int hotelId)
         {
             return Ok(new List<Room>() { service.FindByNumber(roomNumber, hotelId) });
+        }
+
+        [HttpGet("GetWithRezervation/{hotelId}")]
+        [Route("GetWithRezervation")]
+        [ProducesResponseType(typeof(IEnumerable<RoomsWithRezervation>), 200)]
+        public IActionResult GetWithRezervation(int hotelId)
+        {
+            var rooms = new List<RoomsWithRezervation>();
+            rooms.AddRange(service.GetHotelRoomsWithRezervation(hotelId));
+            return Ok(rooms);
         }
 
         [HttpGet]

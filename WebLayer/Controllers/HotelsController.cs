@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Models;
@@ -7,7 +8,8 @@ using System.Collections.Generic;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace WebLayer.Controllers
-{
+{   
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class HotelsController : Controller
@@ -67,9 +69,9 @@ namespace WebLayer.Controllers
 
         [HttpGet]
         [Route("Index")]
-        public IActionResult Index()
+        public IActionResult Hotel_page()
         {
-            return View("~/Views/Index.cshtml");
+            return View("~/Repo_Ui/hotels_ui/hotel_page.cshtml");
         }
     }
 }

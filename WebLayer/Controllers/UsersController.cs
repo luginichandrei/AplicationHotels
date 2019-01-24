@@ -21,7 +21,7 @@ namespace WebLayer.Controllers
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody]User userParam)
         {
-            var user = service.Authenticate("Steve", " ");
+            var user = service.Authenticate(userParam.Name, userParam.Password);
 
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });

@@ -11,5 +11,7 @@ namespace BusinessLayer.Interfaces
         Room FindByNumber(int number, int hotelId);
 
         List<TopRoom> GetRoomRating(DateTime startTime, DateTime endTime, int hotelId);
+
+        IEnumerable<RoomsWithRezervation> GetHotelRoomsWithRezervation(int hotelId);
     }
 }

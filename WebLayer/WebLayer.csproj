@@ -18,6 +18,17 @@
   </Target>
 
   <ItemGroup>
+    <Compile Remove="Repo_Ui\**" />
+    <Compile Remove="wwwroot\Scripts\**" />
+    <Content Remove="Repo_Ui\**" />
+    <Content Remove="wwwroot\Scripts\**" />
+    <EmbeddedResource Remove="Repo_Ui\**" />
+    <EmbeddedResource Remove="wwwroot\Scripts\**" />
+    <None Remove="Repo_Ui\**" />
+    <None Remove="wwwroot\Scripts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Controllers\ValuesController.cs" />
   </ItemGroup>
 

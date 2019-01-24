@@ -30,6 +30,7 @@ namespace WebLayer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddMvc(o => { o.Filters.Add<GlobalExceptionFilter>(); });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -75,10 +76,10 @@ namespace WebLayer
 
                 options.UseSqlServer(Configuration.GetConnectionString("HotelsDatabase"))
             );
-            services.AddScoped<IHotelService, HotelService>();
-            services.AddScoped<IRoomService, RoomService>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IRezervationService, RezervationService>();
+            services.AddTransient<IHotelService, HotelService>();
+            services.AddTransient<IRoomService, RoomService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IRezervationService, RezervationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
